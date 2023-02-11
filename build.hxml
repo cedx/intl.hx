@@ -1,0 +1,7 @@
+--class-path src
+--define analyzer-optimize
+--js var/build.js
+
+intl.Collator
+# TODO intl.DateFormat
+# TODO intl.NumberFormat

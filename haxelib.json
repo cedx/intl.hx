@@ -1,0 +1,11 @@
+{
+	"classPath": "src/",
+	"contributors": ["cedx"],
+	"description": "TODO.",
+	"license": "MIT",
+	"name": "intl",
+	"releasenote": "Initial release.",
+	"tags": ["cross", "formatter", "i18n", "icu", "internationalization", "intl"],
+	"url": "https://github.com/cedx/intl.hx",
+	"version": "0.1.0"
+}

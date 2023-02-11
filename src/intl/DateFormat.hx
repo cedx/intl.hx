@@ -17,7 +17,7 @@ import php.IntlDateFormatter as NativeDateFormat;
 /** Formats dates in a locale-dependent manner. **/
 abstract DateFormat(NativeDateFormat) to NativeDateFormat {
 
-	/** Creates a new date/time format. **/
+	/** Creates a new date format. **/
 	public function new(locale: String, options: DateFormatOptions) {
 		#if java
 			final locale = Locale.forLanguageTag(locale);
@@ -62,8 +62,9 @@ typedef DateFormatOptions = {
 abstract class DateFormatTools {
 
 	/** Converts the specified `date` to a locale-dependent string. **/
-	public static inline function toLocaleString(date: Date, locale: String, options: DateFormatOptions)
-		return #if js NativeDate.fromHaxeDate(date).toLocaleString(locale, cast options) #else new DateFormat(locale, options).format(date) #end;
+	public static inline function toLocaleString(date: Date, locale: String, options: DateFormatOptions) return
+		#if js NativeDate.fromHaxeDate(date).toLocaleString(locale, cast options)
+		#else new DateFormat(locale, options).format(date) #end;
 }
 
 /** Specifies the formatting style of a date or time. **/

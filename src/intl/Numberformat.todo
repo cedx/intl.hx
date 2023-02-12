@@ -42,8 +42,7 @@ abstract NumberFormat(#if php NumberFormatOptions #else NativeNumberFormat #end)
 	/** Formats the specified `number`. **/
 	public function format(number: Float): String return
 		#if (java || js) this.format(number)
-		#else this.currency != null ? this.formatCurrency(number, this.currency) : this.format(currency)
-		#end;
+		#else this.currency != null ? this.formatCurrency(number, this.currency) : this.format(currency) #end;
 
 	/** Returns the underlying native format. **/
 	@:to inline function toNativeFormat() return #if php this.formatter #else this #end;

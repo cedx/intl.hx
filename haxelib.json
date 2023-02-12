@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"name": "intl",
 	"releasenote": "Provides the `DateFormat` component.",
-	"tags": ["cross", "formatter", "i18n", "icu", "internationalization", "intl"],
+	"tags": ["cross", "formatter", "i18n", "internationalization", "intl"],
 	"url": "https://github.com/cedx/intl.hx",
 	"version": "0.1.0"
 }

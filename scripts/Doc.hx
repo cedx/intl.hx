@@ -1,5 +1,5 @@
 //! --class-path src --library tink_core
-import lcov.Version;
+import intl.Version;
 import sys.FileSystem;
 import sys.io.File;
 

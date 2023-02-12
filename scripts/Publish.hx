@@ -1,5 +1,5 @@
 //! --class-path src --library tink_core
-import lcov.Version;
+import intl.Version;
 
 /** Runs the script. **/
 function main() {

@@ -10,7 +10,7 @@ function main() {
 	Sys.command("haxe", ["--define", "doc-gen", "--no-output", "--xml", "var/api.xml", "build.hxml"]);
 	Sys.command("lix", [
 		"run", "dox",
-		"--define", "description", "Provides a subset of the International Components for Unicode (ICU), for Haxe.",
+		"--define", "description", "Provides a small subset of the International Components for Unicode (ICU), for Haxe.",
 		"--define", "source-path", "https://github.com/cedx/intl.hx/blob/main/src",
 		"--define", "themeColor", "0xffc105",
 		"--define", "version", Version.packageVersion,

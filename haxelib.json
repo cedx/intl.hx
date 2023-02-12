@@ -1,7 +1,7 @@
 {
 	"classPath": "src/",
 	"contributors": ["cedx"],
-	"description": "Provides a subset of the International Components for Unicode (ICU).",
+	"description": "Provides a small subset of the International Components for Unicode (ICU).",
 	"license": "MIT",
 	"name": "intl",
 	"releasenote": "Provides the `DateFormat` component.",

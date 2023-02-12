@@ -9,7 +9,7 @@ function main() {
 	final tests = TestBatch.make([
 		// TODO new intl.CollatorTest(),
 		new intl.DateFormatTest(),
-		//new intl.NumberFormatTest(),
+		// TODO new intl.NumberFormatTest(),
 	]);
 
 	ANSI.stripIfUnavailable = false;

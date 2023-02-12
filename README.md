@@ -1,7 +1,7 @@
 # ICU for Haxe
 ![Haxe](https://badgen.net/badge/haxe/%3E%3D4.2.0/green) ![Haxelib](https://badgen.net/haxelib/v/intl) ![License](https://badgen.net/haxelib/license/intl) ![Downloads](https://badgen.net/haxelib/d/intl) ![Coverage](https://badgen.net/codecov/c/github/cedx/intl.hx)
 
-TODO, in [Haxe](https://haxe.org).
+Provides a subset of the [International Components for Unicode (ICU)](https://icu.unicode.org), for [Haxe](https://haxe.org).
 
 ## Documentation
 - [User guide](https://github.com/cedx/intl.hx/wiki)

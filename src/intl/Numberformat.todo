@@ -1,0 +1,88 @@
+package intl;
+
+import haxe.Exception;
+
+#if java
+import java.text.NumberFormat as NativeNumberFormat;
+import java.util.Currency;
+import java.util.Locale;
+#elseif js
+import js.Lib;
+import js.Syntax;
+import js.lib.intl.NumberFormat as NativeNumberFormat;
+#elseif php
+import php.NumberFormatter as NativeNumberFormat;
+#else
+#error "This compilation target is not supported."
+#end
+
+/** Formats numbers in a locale-dependent manner. **/
+abstract NumberFormat(#if php NumberFormatOptions #else NativeNumberFormat #end) {
+
+	/** Creates a new number format. **/
+	public function new(locale: String, ?style: NumberStyle, ?currency: String) {
+		if (style == null) style = Decimal;
+
+		#if java
+			final locale = Locale.forLanguageTag(locale);
+			switch style {
+				case Currency:
+					this = NativeNumberFormat.getCurrencyInstance(locale);
+					if (currency != null) this.setCurrency(Currency.getInstance(currency));
+				case Percent: this = NativeNumberFormat.getPercentInstance(locale);
+				default: this = NativeNumberFormat.getNumberInstance(locale);
+			}
+		#elseif js
+			this = new NativeNumberFormat(locale, {currency: currency != null ? currency : Lib.undefined, style: style});
+		#else
+			this = {currency: currency, formatter: new NativeNumberFormat(locale, style)};
+		#end
+	}
+
+	/** Formats the specified `number`. **/
+	public function format(number: Float): String return
+		#if (java || js) this.format(number)
+		#else this.currency != null ? this.formatCurrency(number, this.currency) : this.format(currency)
+		#end;
+
+	/** Returns the underlying native format. **/
+	@:to inline function toNativeFormat() return #if php this.formatter #else this #end;
+}
+
+#if php
+/** TODO Defines the options of a `NumberFormat` instance. **/
+typedef NumberFormatOptions = {
+
+	/** TODO **/
+	var ?currency: String;
+
+	/** TODO **/
+	var formatter: NativeNumberFormat;
+};
+#end
+
+/** Provides static extensions for numbers. **/
+abstract class NumberFormatTools {
+
+	/** Converts the specified `number` to a locale-dependent string. **/
+	public static inline function toLocaleString(number: Float, locale: String, ?style: NumberStyle, ?currency: String) return
+		#if js Syntax.code("{0}.toLocaleString({currency: {1}, style: {2}})", currency != null ? currency : Lib.undefined, style)
+		#else new NumberFormat(locale, style, currency).format(number) #end;
+}
+
+/** Specifies the formatting style of a number. **/
+#if js
+typedef NumberStyle = NumberFormatStyle;
+#else
+enum abstract NumberStyle(Int) to Int {
+
+	/** Decimal style. **/
+	var Decimal = 1;
+
+	/** Currency style. **/
+	var Currency;
+
+	/** Percent style. **/
+	var Percent;
+}
+#end

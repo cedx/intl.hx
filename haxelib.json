@@ -1,10 +1,10 @@
 {
 	"classPath": "src/",
 	"contributors": ["cedx"],
-	"description": "TODO.",
+	"description": "Provides a subset of the International Components for Unicode (ICU).",
 	"license": "MIT",
 	"name": "intl",
-	"releasenote": "Initial release.",
+	"releasenote": "Provides the `DateFormat` component.",
 	"tags": ["cross", "formatter", "i18n", "icu", "internationalization", "intl"],
 	"url": "https://github.com/cedx/intl.hx",
 	"version": "0.1.0"

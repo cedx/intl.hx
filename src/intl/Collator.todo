@@ -1,0 +1,17 @@
+package intl;
+
+#if java
+import java.text.Collator as NativeCollator;
+#elseif js
+import js.lib.intl.Collator as NativeCollator;
+#elseif php
+import php.Collator as NativeCollator;
+#else
+#error "This compilation target is not supported."
+#end
+
+/** TODO **/
+/*
+abstract Collator(NativeCollator) from NativeCollator to NativeCollator {
+	// TODO
+}*/

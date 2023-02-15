@@ -7,9 +7,8 @@ import sys.io.File;
 function main() {
 	if (FileSystem.exists("docs")) Tools.removeDirectory("docs");
 
-	Sys.command("haxe", ["--define", "doc-gen", "--no-output", "--xml", "var/api.xml", "build.hxml"]);
-	Sys.command("lix", [
-		"run", "dox",
+	Sys.command("haxe --define doc-gen --no-output --xml var/api.xml build.hxml");
+	Sys.command("lix", ["run", "dox",
 		"--define", "description", "Provides a small subset of the International Components for Unicode (ICU), for Haxe.",
 		"--define", "source-path", "https://github.com/cedx/intl.hx/blob/main/src",
 		"--define", "themeColor", "0xffc105",

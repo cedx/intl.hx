@@ -10,10 +10,8 @@ import java.util.Locale;
 import js.Lib;
 import js.Syntax;
 import js.lib.intl.NumberFormat as NativeNumberFormat;
-#elseif php
-import php.NumberFormatter as NativeNumberFormat;
 #else
-#error "This compilation target is not supported."
+import php.NumberFormatter as NativeNumberFormat;
 #end
 
 /** Formats numbers in a locale-dependent manner. **/

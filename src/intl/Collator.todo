@@ -4,10 +4,8 @@ package intl;
 import java.text.Collator as NativeCollator;
 #elseif js
 import js.lib.intl.Collator as NativeCollator;
-#elseif php
-import php.Collator as NativeCollator;
 #else
-#error "This compilation target is not supported."
+import php.Collator as NativeCollator;
 #end
 
 /** TODO **/

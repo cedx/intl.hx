@@ -33,17 +33,13 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 
 	/** The language code. **/
 	public var language(get, never): String;
-		function get_language() return
-			#if java this.getLanguage()
-			#elseif js this.language
-			#else PhpLocale.getPrimaryLanguage(this) #end;
+		function get_language()
+			return #if java this.getLanguage() #elseif js this.language #else PhpLocale.getPrimaryLanguage(this) #end;
 
 	/** The country/region code. **/
 	public var region(get, never): String;
-		function get_region() return
-			#if java this.getCountry()
-			#elseif js this.region
-			#else PhpLocale.getRegion(this) #end;
+		function get_region()
+			return #if java this.getCountry() #elseif js this.region #else PhpLocale.getRegion(this) #end;
 
 	/** Creates a new locale. **/
 	public function new(tag: String)
@@ -62,10 +58,8 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 		#else PhpLocale.getDisplayRegion('$language-$region', this) #end;
 
 	/** Returns a string representation of this object. **/
-	@:to public inline function toString() return
-		#if java this.toLanguageTag()
-		#elseif js this.toString()
-		#else this #end;
+	@:to public inline function toString()
+		return #if java this.toLanguageTag() #elseif js this.toString() #else this #end;
 }
 
 /** The underlying native locale. **/

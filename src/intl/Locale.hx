@@ -3,6 +3,7 @@ package intl;
 #if java
 import java.util.Locale as JavaLocale;
 #elseif js
+import js.Syntax;
 import js.lib.intl.Locale as JsLocale;
 #else
 import php.Locale as PhpLocale;
@@ -22,17 +23,13 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 		}
 	#end
 
+	/** The localized display name for the language of this locale. **/
 	public var displayLanguage(get, never): String;
-		function get_displayLanguage() return
-			#if java this.getDisplayLanguage()
-			#elseif js this.language
-			#else PhpLocale.getDisplayLanguage(this) #end;
+		inline function get_displayLanguage() return getDisplayLanguage(language);
 
+	/** The localized display name for the region of this locale. **/
 	public var displayRegion(get, never): String;
-		function get_displayRegion() return
-			#if java this.getDisplayCountry()
-			#elseif js this.region
-			#else PhpLocale.getDisplayRegion(this) #end;
+		inline function get_displayRegion() return getDisplayRegion(region);
 
 	/** The language code. **/
 	public var language(get, never): String;
@@ -51,6 +48,18 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 	/** Creates a new locale. **/
 	public function new(tag: String)
 		this = #if java JavaLocale.forLanguageTag(tag) #elseif js new JsLocale(tag) #else tag #end;
+
+	/** Returns an appropriately localized display name for the specified `language`. **/
+	public function getDisplayLanguage(language: String) return
+		#if java JavaLocale.forLanguageTag('$language-$region').getDisplayLanguage(this)
+		#elseif js Syntax.construct("Intl.DisplayNames", this, {type: "language"}).of(language)
+		#else PhpLocale.getDisplayLanguage('$language-$region', this) #end;
+
+	/** Returns an appropriately localized display name for the specified `region`. **/
+	public function getDisplayRegion(region: String) return
+		#if java JavaLocale.forLanguageTag('$language-$region').getDisplayCountry(this)
+		#elseif js Syntax.construct("Intl.DisplayNames", this, {type: "region"}).of(region)
+		#else PhpLocale.getDisplayRegion('$language-$region', this) #end;
 
 	/** Returns a string representation of this object. **/
 	@:to public inline function toString() return

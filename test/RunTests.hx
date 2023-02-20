@@ -9,6 +9,7 @@ function main() {
 	final tests = TestBatch.make([
 		// TODO new intl.CollatorTest(),
 		new intl.DateFormatTest(),
+		new intl.LocaleTest(),
 		// TODO new intl.NumberFormatTest(),
 	]);
 

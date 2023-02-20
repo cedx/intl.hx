@@ -16,9 +16,9 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 	/** The default locale. **/
 	public static var defaultLocale(get, set): Locale;
 		static function get_defaultLocale()
-			return #if php PhpLocale.getDefault() #else JavaLocale.getDefault() #end;
+			return #if java JavaLocale.getDefault() #else PhpLocale.getDefault() #end;
 		static function set_defaultLocale(value: Locale) {
-			#if php PhpLocale.setDefault(value) #else JavaLocale.setDefault(value) #end;
+			#if java JavaLocale.setDefault(value) #else PhpLocale.setDefault(value) #end;
 			return value;
 		}
 	#end

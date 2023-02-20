@@ -4,4 +4,5 @@
 
 # TODO intl.Collator
 intl.DateFormat
+intl.Locale
 # TODO intl.NumberFormat

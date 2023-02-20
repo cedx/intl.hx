@@ -68,5 +68,5 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 		#else this #end;
 }
 
-/** The underlying native date format. **/
+/** The underlying native locale. **/
 private typedef NativeLocale = #if java JavaLocale #elseif js JsLocale #else String #end;

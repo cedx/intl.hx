@@ -7,5 +7,5 @@
 	"releasenote": "Fixed the `NumberFormatTools.toLocaleString()` method.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl"],
 	"url": "https://github.com/cedx/intl.hx",
-	"version": "0.3.1"
+	"version": "0.3.2"
 }

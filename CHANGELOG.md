@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.3.2](https://github.com/cedx/intl.hx/compare/v0.3.1...v0.3.2)
+- Fixed the return type of some `Locale` and `NumberFormatTools` methods.
+
 ## Version [0.3.1](https://github.com/cedx/intl.hx/compare/v0.3.0...v0.3.1)
 - Fixed the `NumberFormatTools.toLocaleString()` method.
 

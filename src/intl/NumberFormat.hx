@@ -61,7 +61,7 @@ typedef NumberFormatOptions = {
 abstract class NumberFormatTools {
 
 	/** Converts the specified `number` to a locale-dependent string. **/
-	public static inline function toLocaleString(number: Float, locale: String, ?style: NumberStyle, ?currency: String) return
+	public static inline function toLocaleString(number: Float, locale: String, ?style: NumberStyle, ?currency: String): String return
 		#if js Syntax.code("{0}.toLocaleString({1}, {2})", number, locale, {currency: style == Currency ? currency : Lib.undefined, style: style})
 		#else new NumberFormat(locale, style, currency).format(number) #end;
 }

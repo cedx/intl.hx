@@ -46,13 +46,13 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 		this = #if java JavaLocale.forLanguageTag(tag) #elseif js new JsLocale(tag) #else tag #end;
 
 	/** Returns an appropriately localized display name for the specified `language`. **/
-	public function getDisplayLanguage(language: String) return
+	public function getDisplayLanguage(language: String): String return
 		#if java JavaLocale.forLanguageTag('$language-$region').getDisplayLanguage(this)
 		#elseif js Syntax.construct("Intl.DisplayNames", this, {type: "language"}).of(language)
 		#else PhpLocale.getDisplayLanguage('$language-$region', this) #end;
 
 	/** Returns an appropriately localized display name for the specified `region`. **/
-	public function getDisplayRegion(region: String) return
+	public function getDisplayRegion(region: String): String return
 		#if java JavaLocale.forLanguageTag('$language-$region').getDisplayCountry(this)
 		#elseif js Syntax.construct("Intl.DisplayNames", this, {type: "region"}).of(region)
 		#else PhpLocale.getDisplayRegion('$language-$region', this) #end;

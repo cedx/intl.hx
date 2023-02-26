@@ -30,15 +30,15 @@ abstract NumberFormat(#if php NumberFormatOptions #else NativeNumberFormat #end)
 				default: this = JavaNumberFormat.getNumberInstance(locale);
 			}
 		#elseif js
-			this = new JsNumberFormat(locale, {currency: currency != null ? currency : Lib.undefined, style: style});
+			this = new JsNumberFormat(locale, {currency: style == Currency ? currency : Lib.undefined, style: style});
 		#else
-			this = {currency: currency, formatter: new NumberFormatter(locale, style)};
+			this = {currency: style == Currency ? currency : null, formatter: new NumberFormatter(locale, style)};
 		#end
 	}
 
 	/** Formats the specified `number`. **/
 	public function format(number: Float) return
-		#if php this.currency != null ? this.formatCurrency(number, this.currency) : this.format(number)
+		#if php this.currency != null ? this.formatter.formatCurrency(number, this.currency) : this.formatter.format(number)
 		#else this.format(number) #end;
 
 	/** Returns the native number format. **/
@@ -62,7 +62,7 @@ abstract class NumberFormatTools {
 
 	/** Converts the specified `number` to a locale-dependent string. **/
 	public static inline function toLocaleString(number: Float, locale: String, ?style: NumberStyle, ?currency: String) return
-		#if js Syntax.code("{0}.toLocaleString({currency: {1}, style: {2}})", number, currency != null ? currency : Lib.undefined, style)
+		#if js Syntax.code("{0}.toLocaleString(locale, {1})", number, {currency: style == Currency ? currency : Lib.undefined, style: style})
 		#else new NumberFormat(locale, style, currency).format(number) #end;
 }
 

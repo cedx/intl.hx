@@ -10,7 +10,7 @@ function main() {
 		// TODO new intl.CollatorTest(),
 		new intl.DateFormatTest(),
 		new intl.LocaleTest(),
-		// TODO new intl.NumberFormatTest(),
+		new intl.NumberFormatTest()
 	]);
 
 	ANSI.stripIfUnavailable = false;

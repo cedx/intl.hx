@@ -43,7 +43,7 @@ abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat 
 }
 
 /** Defines the options of a `DateFormat` instance. **/
-typedef DateFormatOptions = {
+typedef DateFormatOptions = #if js DateTimeFormatOptions & #end {
 
 	/** The date style. **/
 	var ?dateStyle: DateTimeStyle;
@@ -51,8 +51,10 @@ typedef DateFormatOptions = {
 	/** The time style. **/
 	var ?timeStyle: DateTimeStyle;
 
+	#if !js
 	/** The time zone. **/
 	var ?timeZone: String;
+	#end
 }
 
 /** Provides static extensions for dates. **/

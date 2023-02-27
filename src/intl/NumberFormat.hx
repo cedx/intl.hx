@@ -15,7 +15,7 @@ import php.NumberFormatter;
 #end
 
 /** Formats numbers in a locale-dependent manner. **/
-abstract NumberFormat(#if php NumberFormatOptions #else NativeNumberFormat #end) #if !php from NativeNumberFormat #end {
+abstract NumberFormat(#if php NumberFormatData #else NativeNumberFormat #end) #if !php from NativeNumberFormat #end {
 
 	/** Creates a new number format. **/
 	public function new(locale: String, ?style: NumberStyle, ?currency: String) {
@@ -46,8 +46,8 @@ abstract NumberFormat(#if php NumberFormatOptions #else NativeNumberFormat #end)
 }
 
 #if php
-/** Defines the options of a `NumberFormat` instance. **/
-typedef NumberFormatOptions = {
+/** Defines the data of a `NumberFormat` instance. **/
+typedef NumberFormatData = {
 
 	/** The currency code. **/
 	var ?currency: String;

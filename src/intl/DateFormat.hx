@@ -27,7 +27,7 @@ abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat 
 
 			if (options.timeZone != null) this.setTimeZone(TimeZone.getTimeZone(options.timeZone));
 		#elseif js
-			this = new DateTimeFormat(locale, cast options);
+			this = new DateTimeFormat(locale, options);
 		#else
 			final dateStyle = options.dateStyle != null ? options.dateStyle : IntlDateFormatter.NONE;
 			final timeStyle = options.timeStyle != null ? options.timeStyle : IntlDateFormatter.NONE;

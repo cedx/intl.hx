@@ -6,5 +6,5 @@
 --define no-deprecation-warnings
 --library instrument
 --library tink_unittest
---macro instrument.Instrumentation.coverage(['intl'], ['src'])
+--macro instrument.Instrumentation.coverage(["intl"], ["src"])
 --main RunTests

@@ -12,11 +12,14 @@ import php.DateTime;
 import php.IntlDateFormatter;
 #end
 
+/** The underlying native date format. **/
+private typedef NativeDateFormat = #if java JavaDateFormat #elseif js DateTimeFormat #else IntlDateFormatter #end;
+
 /** Formats dates in a locale-dependent manner. **/
 abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat {
 
 	/** Creates a new date format. **/
-	public function new(locale: String, options: DateFormatOptions) {
+	public #if js inline #end function new(locale: String, options: DateFormatOptions) {
 		#if java
 			final locale = new Locale(locale);
 			this = switch options {
@@ -36,7 +39,7 @@ abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat 
 	}
 
 	/** Formats the specified `date`. **/
-	public function format(date: Date) return
+	public inline function format(date: Date) return
 		#if java this.format(new JavaDate(date.getTime()))
 		#elseif js this.format(JsDate.fromHaxeDate(date))
 		#else this.format(new DateTime('@${Std.int(date.getTime() / 1000)}')) #end;
@@ -46,28 +49,17 @@ abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat 
 typedef DateFormatOptions = #if js DateTimeFormatOptions & #end {
 
 	/** The date style. **/
-	var ?dateStyle: DateTimeStyle;
+	var ?dateStyle: DateFormatStyle;
 
 	/** The time style. **/
-	var ?timeStyle: DateTimeStyle;
+	var ?timeStyle: DateFormatStyle;
 
-	#if !js
 	/** The time zone. **/
 	var ?timeZone: String;
-	#end
-}
-
-/** Provides static extensions for dates. **/
-abstract class DateFormatTools {
-
-	/** Converts the specified `date` to a locale-dependent string. **/
-	public static inline function toLocaleString(date: Date, locale: String, options: DateFormatOptions) return
-		#if js JsDate.fromHaxeDate(date).toLocaleString(locale, cast options)
-		#else new DateFormat(locale, options).format(date) #end;
 }
 
 /** Specifies the formatting style of a date or time. **/
-enum abstract DateTimeStyle(#if js String #else Int #end) to #if js String #else Int #end {
+enum abstract DateFormatStyle(#if js String #else Int #end) to #if js String #else Int #end {
 
 	/** Full style. **/
 	var Full = #if js "full" #else 0 #end;
@@ -82,5 +74,11 @@ enum abstract DateTimeStyle(#if js String #else Int #end) to #if js String #else
 	var Short = #if js "short" #else 3 #end;
 }
 
-/** The underlying native date format. **/
-private typedef NativeDateFormat = #if java JavaDateFormat #elseif js DateTimeFormat #else IntlDateFormatter #end;
+/** Provides static extensions for dates. **/
+abstract class DateFormatTools {
+
+	/** Converts the specified `date` to a locale-dependent string. **/
+	public static #if js inline #end function toLocaleString(date: Date, locale: String, options: DateFormatOptions) return
+		#if js JsDate.fromHaxeDate(date).toLocaleString(locale, cast options)
+		#else new DateFormat(locale, options).format(date) #end;
+}

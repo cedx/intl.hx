@@ -9,6 +9,9 @@ import js.lib.intl.Locale as JsLocale;
 import php.Locale as PhpLocale;
 #end
 
+/** The underlying native locale. **/
+private typedef NativeLocale = #if java JavaLocale #elseif js JsLocale #else String #end;
+
 /** Represents a Unicode identifier used to get language, culture, or regionally-specific behavior. **/
 abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 
@@ -61,6 +64,3 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 	@:to public inline function toString()
 		return #if java this.toLanguageTag() #elseif js this.toString() #else this #end;
 }
-
-/** The underlying native locale. **/
-private typedef NativeLocale = #if java JavaLocale #elseif js JsLocale #else String #end;

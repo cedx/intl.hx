@@ -1,6 +1,6 @@
 package intl;
 
-import intl.NumberFormat.NumberStyle;
+import intl.NumberFormat.NumberFormatStyle;
 using StringTools;
 using intl.NumberFormat.NumberFormatTools;
 
@@ -11,12 +11,12 @@ using intl.NumberFormat.NumberFormatTools;
 	public function new() {}
 
 	/** Tests the `format()` method. **/
-	@:variant(123, intl.NumberFormat.NumberStyle.Currency, "123,00 €")
-	@:variant(456.789, intl.NumberFormat.NumberStyle.Decimal, "456,789")
-	@:variant(0.55, intl.NumberFormat.NumberStyle.Percent, "55 %")
-	public function testFormat(input: Float, style: NumberStyle, output: String) {
-		asserts.assert(normalize(new NumberFormat("fr-FR", style, "EUR").format(input)) == output);
-		asserts.assert(normalize(input.toLocaleString("fr-FR", style, "EUR")) == output);
+	@:variant(123, intl.NumberFormat.NumberFormatStyle.Currency, "123,00 €")
+	@:variant(456.789, intl.NumberFormat.NumberFormatStyle.Decimal, "456,789")
+	@:variant(0.55, intl.NumberFormat.NumberFormatStyle.Percent, "55 %")
+	public function testFormat(input: Float, style: NumberFormatStyle, output: String) {
+		asserts.assert(normalize(new NumberFormat("fr-FR", cast {style: style, currency: "EUR"}).format(input)) == output);
+		asserts.assert(normalize(input.toLocaleString("fr-FR", cast {style: style, currency: "EUR"})) == output);
 		return asserts.done();
 	}
 

@@ -6,13 +6,15 @@ import haxe.exceptions.ArgumentException;
 import java.text.NumberFormat as JavaNumberFormat;
 import java.util.Currency as JavaCurrency;
 #elseif js
-import js.Lib;
 import js.Syntax;
 import js.lib.intl.NumberFormat as JsNumberFormat;
-import js.lib.intl.NumberFormat.NumberFormatStyle;
+import js.lib.intl.NumberFormat.NumberFormatOptions as JsNumberFormatOptions;
 #else
 import php.NumberFormatter;
 #end
+
+/** The underlying native number format. **/
+private typedef NativeNumberFormat = #if java JavaNumberFormat #elseif js JsNumberFormat #else NumberFormatter #end;
 
 /** Formats numbers in a locale-dependent manner. **/
 abstract NumberFormat(#if php NumberFormatData #else NativeNumberFormat #end) #if !php from NativeNumberFormat #end {
@@ -37,7 +39,7 @@ abstract NumberFormat(#if php NumberFormatData #else NativeNumberFormat #end) #i
 	}
 
 	/** Formats the specified `number`. **/
-	public function format(number: Float) return
+	public #if !php inline #end function format(number: Float) return
 		#if php this.currency != null ? this.formatter.formatCurrency(number, this.currency) : this.formatter.format(number)
 		#else this.format(number) #end;
 
@@ -46,7 +48,7 @@ abstract NumberFormat(#if php NumberFormatData #else NativeNumberFormat #end) #i
 }
 
 #if php
-/** Defines the data of a `NumberFormat` instance. **/
+/** Defines the underlying type of a `NumberFormat` instance. **/
 typedef NumberFormatData = {
 
 	/** The currency code. **/
@@ -67,21 +69,19 @@ abstract class NumberFormatTools {
 }
 
 /** Specifies the formatting style of a number. **/
-#if js
-typedef NumberStyle = NumberFormatStyle;
-#else
-enum abstract NumberStyle(Int) to Int {
+enum abstract NumberFormatStyle(#if js String #else Int #end) to #if js String #else Int #end {
 
-	/** Decimal style. **/
-	var Decimal = 1;
+	/** Plain number formatting. **/
+	var Decimal = #if js "decimal" #else 1 #end;
 
-	/** Currency style. **/
-	var Currency;
+	/** Currency formatting. **/
+	var Currency = #if js "currency" #else 2 #end;
 
-	/** Percent style. **/
-	var Percent;
+	/** Percent formatting. **/
+	var Percent = #if js "percent" #else 3 #end;
+
+	#if js
+	/** Unit formatting. **/
+	var Unit = "unit";
+	#end
 }
-#end
-
-/** The underlying native number format. **/
-private typedef NativeNumberFormat = #if java JavaNumberFormat #elseif js JsNumberFormat #else NumberFormatter #end;

@@ -29,9 +29,10 @@ abstract NumberFormat(#if php NumberFormatData #else NativeNumberFormat #end) #i
 		#elseif js
 			this = new JsNumberFormat(locale, options);
 		#else
-			if (options == null) options = {};
-			if (options.style == null) options.style = Decimal;
-			this = {currency: options.style == Currency ? options.currency : null, formatter: new NumberFormatter(locale, options.style)};
+			this = {
+				currency: options.style == Currency ? options.currency : null,
+				formatter: new NumberFormatter(locale, options.style != null ? options.style : Decimal)
+			};
 		#end
 	}
 
@@ -52,7 +53,7 @@ typedef NumberFormatData = {
 	var ?currency: String;
 
 	/** The native number format. **/
-	var formatter: NativeNumberFormat;
+	var formatter: NumberFormatter;
 };
 #end
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## Version [0.4.0](https://github.com/cedx/intl.hx/compare/v0.3.2...v0.4.0)
+- Added the `Unit` and `UnitDisplay` enumerations.
+- Changed the signature of the `NumberFormat` constructor.
+- Renamed the `DateTimeStyle` enumeration to `DateFormatStyle`.
+- Renamed the `NumberStyle` enumeration to `NumberFormatStyle`.
+
 ## Version [0.3.2](https://github.com/cedx/intl.hx/compare/v0.3.1...v0.3.2)
 - Fixed the return type of some `Locale` and `NumberFormatTools` methods.
 

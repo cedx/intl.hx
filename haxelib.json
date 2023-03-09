@@ -4,8 +4,8 @@
 	"description": "Provides a small subset of the International Components for Unicode (ICU).",
 	"license": "MIT",
 	"name": "intl",
-	"releasenote": "Fixed the return type of some `Locale` and `NumberFormatTools` methods.",
+	"releasenote": "Added the `Unit` and `UnitDisplay` enumerations, changed the signature of the `NumberFormat` constructor.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl"],
 	"url": "https://github.com/cedx/intl.hx",
-	"version": "0.3.2"
+	"version": "0.4.0"
 }

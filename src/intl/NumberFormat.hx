@@ -36,7 +36,7 @@ abstract NumberFormat(#if php NumberFormatData #else NativeNumberFormat #end) #i
 	}
 
 	/** Formats the specified `number`. **/
-	public #if !php inline #end function format(number: Float) return
+	public #if !php inline #end function format(number: Float): String return
 		#if php this.currency != null ? this.formatter.formatCurrency(number, this.currency) : this.formatter.format(number)
 		#else this.format(number) #end;
 
@@ -69,10 +69,10 @@ typedef NumberFormatOptions = #if js JsNumberFormatOptions & #end {
 
 	#if js
 	/** The unit to use in `NumberFormatStyle.Unit` formatting. **/
-	var ?unit: Unit;
+	var ?unit: SimpleUnit;
 
 	/** The unit formatting style to use in `NumberFormatStyle.Unit` formatting. **/
-	var ?unitDisplay: Unit.UnitDisplay;
+	var ?unitDisplay: NumberFormatUnitDisplay;
 	#end
 }
 
@@ -80,7 +80,7 @@ typedef NumberFormatOptions = #if js JsNumberFormatOptions & #end {
 abstract class NumberFormatTools {
 
 	/** Converts the specified `number` to a locale-dependent string. **/
-	public static #if js inline #end function toLocaleString(number: Float, locale: String, options: NumberFormatOptions) return
+	public static #if js inline #end function toLocaleString(number: Float, locale: String, options: NumberFormatOptions): String return
 		#if js Syntax.code("{0}.toLocaleString({1}, {2})", number, locale, options)
 		#else new NumberFormat(locale, options).format(number) #end;
 }
@@ -101,4 +101,17 @@ enum abstract NumberFormatStyle(#if js String #else Int #end) to #if js String #
 	/** Unit formatting. **/
 	var Unit = "unit";
 	#end
+}
+
+/** Defines the unit formatting style. **/
+enum abstract NumberFormatUnitDisplay(String) to String {
+
+	/** Long formatting. **/
+	var Long = "long";
+
+	/** Narrow formatting. **/
+	var Narrow = "narrow";
+
+	/** Short formatting. **/
+	var Short = "short";
 }

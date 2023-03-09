@@ -1,7 +1,7 @@
 package intl;
 
-/** Provides the list of supported units. **/
-enum abstract Unit(String) to String {
+/** Provides the list of supported simple units. **/
+enum abstract SimpleUnit(String) to String {
 	var Acre = "acre";
 	var Bit = "bit";
 	var Byte = "byte";
@@ -45,17 +45,4 @@ enum abstract Unit(String) to String {
 	var Week = "week";
 	var Yard = "yard";
 	var Year = "year";
-}
-
-/** Defines the unit formatting style. **/
-enum abstract UnitDisplay(String) to String {
-
-	/** Long formatting. **/
-	var Long = "long";
-
-	/** Narrow formatting. **/
-	var Narrow = "narrow";
-
-	/** Short formatting. **/
-	var Short = "short";
 }

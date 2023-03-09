@@ -39,7 +39,7 @@ abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat 
 	}
 
 	/** Formats the specified `date`. **/
-	public inline function format(date: Date) return
+	public inline function format(date: Date): String return
 		#if java this.format(new JavaDate(date.getTime()))
 		#elseif js this.format(JsDate.fromHaxeDate(date))
 		#else this.format(new DateTime('@${Std.int(date.getTime() / 1000)}')) #end;
@@ -78,7 +78,7 @@ enum abstract DateFormatStyle(#if js String #else Int #end) to #if js String #el
 abstract class DateFormatTools {
 
 	/** Converts the specified `date` to a locale-dependent string. **/
-	public static #if js inline #end function toLocaleString(date: Date, locale: String, options: DateFormatOptions) return
+	public static #if js inline #end function toLocaleString(date: Date, locale: String, options: DateFormatOptions): String return
 		#if js JsDate.fromHaxeDate(date).toLocaleString(locale, cast options)
 		#else new DateFormat(locale, options).format(date) #end;
 }

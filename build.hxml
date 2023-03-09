@@ -6,3 +6,4 @@
 intl.DateFormat
 intl.Locale
 intl.NumberFormat
+intl.Unit

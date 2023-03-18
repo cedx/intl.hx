@@ -2,7 +2,7 @@
 --define analyzer-optimize
 --js var/build.js
 
-# TODO intl.Collator
+intl.Collator
 intl.DateFormat
 intl.Locale
 intl.NumberFormat

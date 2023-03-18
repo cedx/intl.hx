@@ -1,6 +1,6 @@
 package js.lib.intl;
 
-/** Represents a Unicode locale identifier. **/
+/** Represents a Unicode identifier used to get language, culture, or regionally-specific behavior. **/
 @:native("Intl.Locale")
 extern class Locale {
 

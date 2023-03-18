@@ -3,6 +3,8 @@
 
 Provides a small subset of the [International Components for Unicode (ICU)](https://icu.unicode.org), for [Haxe](https://haxe.org).
 
+> Supports only `java`, `js` and `php` compilation targets.
+
 ## Documentation
 - [User guide](https://github.com/cedx/intl.hx/wiki)
 - [API reference](https://cedx.github.io/intl.hx)

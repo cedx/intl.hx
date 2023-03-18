@@ -13,6 +13,7 @@ import php.Collator as PhpCollator;
 private typedef NativeCollator = #if java JavaCollator #elseif js JsCollator #else PhpCollator #end;
 
 /** Provides string comparison capability with support for appropriate locale-sensitive sort orderings. **/
+@:forward(compare)
 abstract Collator(NativeCollator) from NativeCollator to NativeCollator {
 
 	/** Creates a new date format. **/
@@ -27,10 +28,6 @@ abstract Collator(NativeCollator) from NativeCollator to NativeCollator {
 			this.setStrength(options.strength != null ? options.strength : Identical);
 		#end
 	}
-
-	/** Compares two strings according to the sort order of this collator. **/
-	public inline function compare(source: String, target: String): Int
-		return this.compare(source, target);
 }
 
 /** Defines the options of a `Collator` instance. **/

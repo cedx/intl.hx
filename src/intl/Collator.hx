@@ -31,9 +31,6 @@ abstract Collator(NativeCollator) from NativeCollator to NativeCollator {
 	/** Compares two strings according to the sort order of this collator. **/
 	public inline function compare(source: String, target: String): Int
 		return this.compare(source, target);
-
-	/** Sorts the specified `array` of strings according to the sort order of this collator. **/
-	public inline function sort(array: Array<String>) array.sort(compare);
 }
 
 /** Defines the options of a `Collator` instance. **/

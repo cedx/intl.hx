@@ -7,5 +7,5 @@
 	"releasenote": "Added the `SimpleUnit` enumeration, changed the signature and options of the `NumberFormat` constructor.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl"],
 	"url": "https://github.com/cedx/intl.hx",
-	"version": "0.4.0"
+	"version": "0.5.0"
 }

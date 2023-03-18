@@ -54,8 +54,10 @@ typedef DateFormatOptions = #if js DateTimeFormatOptions & #end {
 	/** The time style. **/
 	var ?timeStyle: DateFormatStyle;
 
+	#if !js
 	/** The time zone. **/
 	var ?timeZone: String;
+	#end
 }
 
 /** Specifies the formatting style of a date or time. **/

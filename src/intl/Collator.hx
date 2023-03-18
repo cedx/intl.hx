@@ -55,14 +55,6 @@ enum abstract CollatorStrength(#if js Sensitivity #else Int #end) to #if js Sens
 	/** Upper and lower case differences in characters are distinguished. **/
 	var Tertiary = #if js Case #else 2 #end;
 
-	#if php
-	/**
-		When punctuation is ignored at `Primary` to `Tertiary` strength,
-		an additional strength level can be used to distinguish words with and without punctuation.
-	**/
-	var Quaternary = 3;
-	#end
-
 	/** When all other levels are equal, the `Identical` level is used as a tiebreaker. **/
 	var Identical = #if java 3 #elseif js Variant #else 15 #end;
 }

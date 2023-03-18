@@ -3,7 +3,9 @@
 	"exclude": {
 		"path": "RELATIVE_TO_PROJECT",
 		"ConditionalCompilation": ["src/intl/DateFormat", "src/intl/Locale", "src/intl/NumberFormat"],
-		"ReturnCount": ["src/intl/DateFormat:format"]
+		"OperatorWhitespace": ["test/intl/CollatorTest:testCompare"],
+		"ReturnCount": ["src/intl/DateFormat:format"],
+		"WhitespaceAround": ["test/intl/CollatorTest:testCompare"]
 	},
 	"checks": [
 		{"type": "BlockBreakingConditional"},

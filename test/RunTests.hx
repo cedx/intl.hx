@@ -7,7 +7,7 @@ import tink.unit.TestBatch;
 /** Runs the test suite. **/
 function main() {
 	final tests = TestBatch.make([
-		// TODO new intl.CollatorTest(),
+		new intl.CollatorTest(),
 		new intl.DateFormatTest(),
 		new intl.LocaleTest(),
 		new intl.NumberFormatTest()

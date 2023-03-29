@@ -4,7 +4,7 @@
 	"description": "Provides a small subset of the International Components for Unicode (ICU).",
 	"license": "MIT",
 	"name": "intl",
-	"releasenote": "Provides the `Collator` component.",
+	"releasenote": "Provides the `TimeZone` component.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl"],
 	"url": "https://github.com/cedx/intl.hx",
 	"version": "0.6.0"

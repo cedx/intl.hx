@@ -65,10 +65,10 @@ abstract TimeZone(NativeTimeZone) from NativeTimeZone to NativeTimeZone {
 /** Defines the options of a `TimeZone` instance. **/
 typedef TimeZoneOptions = {
 
-	/** The date style. **/
+	/** Value indicating whether to use a Daylight Saving Time name. **/
 	var ?daylight: Bool;
 
-	/** The time style. **/
+	/** The formatting style. **/
 	var ?style: TimeZoneStyle;
 }
 

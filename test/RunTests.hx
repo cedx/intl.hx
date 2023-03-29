@@ -10,7 +10,8 @@ function main() {
 		new intl.CollatorTest(),
 		new intl.DateFormatTest(),
 		new intl.LocaleTest(),
-		new intl.NumberFormatTest()
+		new intl.NumberFormatTest(),
+		new intl.TimeZoneTest()
 	]);
 
 	ANSI.stripIfUnavailable = false;

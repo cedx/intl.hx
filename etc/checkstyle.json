@@ -2,7 +2,7 @@
 	"defaultSeverity": "ERROR",
 	"exclude": {
 		"path": "RELATIVE_TO_PROJECT",
-		"ConditionalCompilation": ["src/intl/DateFormat", "src/intl/Locale", "src/intl/NumberFormat"],
+		"ConditionalCompilation": ["src/intl/DateFormat", "src/intl/Locale", "src/intl/NumberFormat", "src/intl/TimeZone"],
 		"OperatorWhitespace": ["test/intl/CollatorTest:testCompare"],
 		"ReturnCount": ["src/intl/DateFormat:format"],
 		"WhitespaceAround": ["test/intl/CollatorTest:testCompare"]

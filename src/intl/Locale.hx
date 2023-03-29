@@ -18,7 +18,7 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 	#if (java || php)
 	/** The default locale. **/
 	public static var defaultLocale(get, set): Locale;
-		static function get_defaultLocale()
+		static inline function get_defaultLocale()
 			return #if java JavaLocale.getDefault() #else PhpLocale.getDefault() #end;
 		static function set_defaultLocale(value: Locale) {
 			#if java JavaLocale.setDefault(value) #else PhpLocale.setDefault(value) #end;
@@ -36,16 +36,16 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 
 	/** The language code. **/
 	public var language(get, never): String;
-		function get_language()
+		inline function get_language()
 			return #if java this.getLanguage() #elseif js this.language #else PhpLocale.getPrimaryLanguage(this) #end;
 
 	/** The country/region code. **/
 	public var region(get, never): String;
-		function get_region()
+		inline function get_region()
 			return #if java this.getCountry() #elseif js this.region #else PhpLocale.getRegion(this) #end;
 
 	/** Creates a new locale. **/
-	public function new(tag: String)
+	public inline function new(tag: String)
 		this = #if java JavaLocale.forLanguageTag(tag) #elseif js new JsLocale(tag) #else tag #end;
 
 	/** Returns an appropriately localized display name for the specified `language`. **/

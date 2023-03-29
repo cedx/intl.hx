@@ -7,3 +7,4 @@ intl.DateFormat
 intl.Locale
 intl.NumberFormat
 intl.SimpleUnit
+intl.TimeZone

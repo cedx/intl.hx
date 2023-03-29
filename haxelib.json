@@ -7,5 +7,5 @@
 	"releasenote": "Provides the `Collator` component.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl"],
 	"url": "https://github.com/cedx/intl.hx",
-	"version": "0.5.0"
+	"version": "0.6.0"
 }

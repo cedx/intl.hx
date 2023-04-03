@@ -12,6 +12,8 @@ import php.DateTime;
 import php.IntlDateFormatter;
 #end
 
+using DateTools;
+
 /** The underlying native date format. **/
 private typedef NativeDateFormat = #if java JavaDateFormat #elseif js DateTimeFormat #else IntlDateFormatter #end;
 
@@ -42,7 +44,7 @@ abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat 
 	public inline function format(date: Date): String return
 		#if java this.format(new JavaDate(date.getTime()))
 		#elseif js this.format(JsDate.fromHaxeDate(date))
-		#else this.format(new DateTime('@${Std.int(date.getTime() / 1000)}')) #end;
+		#else this.format(new DateTime('@${Std.int(date.getTime() / 1.seconds())}')) #end;
 }
 
 /** Defines the options of a `DateFormat` instance. **/

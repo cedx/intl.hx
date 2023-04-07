@@ -31,7 +31,7 @@ abstract NumberFormat(#if php NumberFormatData #else NativeNumberFormat #end) #i
 		#else
 			this = {
 				currency: options.style == Currency ? options.currency : null,
-				formatter: new NumberFormatter(locale, options.style != null ? options.style : Decimal)
+				formatter: new NumberFormatter(locale, options.style ?? Decimal)
 			};
 		#end
 	}

@@ -50,9 +50,8 @@ abstract TimeZone(NativeTimeZone) from NativeTimeZone to NativeTimeZone {
 	#if (java || php)
 	/** Returns an appropriately localized display name for the specified `locale`. **/
 	public function getDisplayName(locale: String, ?options: TimeZoneOptions): String {
-		if (options == null) options = {};
-		final daylight = options.daylight != null ? options.daylight : false;
-		final style = options.style != null ? options.style : Long;
+		final daylight = options?.daylight ?? false;
+		final style = options?.style ?? Long;
 		return #if java this.getDisplayName(daylight, style, new Locale(locale)) #else this.getDisplayName(daylight, style, locale) #end;
 	}
 	#end

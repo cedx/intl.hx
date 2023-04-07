@@ -34,8 +34,8 @@ abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat 
 		#elseif js
 			this = new DateTimeFormat(locale, options);
 		#else
-			final dateStyle = options.dateStyle != null ? options.dateStyle : IntlDateFormatter.NONE;
-			final timeStyle = options.timeStyle != null ? options.timeStyle : IntlDateFormatter.NONE;
+			final dateStyle = options.dateStyle ?? IntlDateFormatter.NONE;
+			final timeStyle = options.timeStyle ?? IntlDateFormatter.NONE;
 			this = new IntlDateFormatter(locale, dateStyle, timeStyle, options.timeZone);
 		#end
 	}

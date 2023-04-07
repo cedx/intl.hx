@@ -20,12 +20,12 @@ abstract Collator(NativeCollator) from NativeCollator to NativeCollator {
 	public #if js inline #end function new(locale: String, options: CollatorOptions) {
 		#if java
 			this = JavaCollator.getInstance(new Locale(locale));
-			this.setStrength(options.strength != null ? options.strength : Identical);
+			this.setStrength(options.strength ?? Identical);
 		#elseif js
-			this = new JsCollator(locale, {sensitivity: options.strength != null ? options.strength : Identical});
+			this = new JsCollator(locale, {sensitivity: options.strength ?? Identical});
 		#else
 			this = new PhpCollator(locale);
-			this.setStrength(options.strength != null ? options.strength : Identical);
+			this.setStrength(options.strength ?? Identical);
 		#end
 	}
 }

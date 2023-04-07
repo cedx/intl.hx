@@ -7,5 +7,5 @@
 	"releasenote": "Provides the `TimeZone` component, removed the `Collator.sort()` method.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl"],
 	"url": "https://github.com/cedx/intl.hx",
-	"version": "0.6.0"
+	"version": "0.7.0"
 }

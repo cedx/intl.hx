@@ -4,7 +4,7 @@
 	"description": "Provides a small subset of the International Components for Unicode (ICU).",
 	"license": "MIT",
 	"name": "intl",
-	"releasenote": "Provides the `TimeZone` component, removed the `Collator.sort()` method.",
+	"releasenote": "Updated the dependencies, use the null coalescing operator.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl"],
 	"url": "https://github.com/cedx/intl.hx",
 	"version": "0.7.0"

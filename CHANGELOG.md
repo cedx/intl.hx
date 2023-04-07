@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.7.0](https://github.com/cedx/intl.hx/compare/v0.6.0...v0.7.0)
+- Updated the dependencies.
+- Use the null coalescing operator.
+
 ## Version [0.6.0](https://github.com/cedx/intl.hx/compare/v0.5.0...v0.6.0)
 - Provides the `TimeZone` component.
 - Removed the `Collator.sort()` method.

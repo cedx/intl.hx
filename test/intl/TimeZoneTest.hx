@@ -8,10 +8,10 @@ package intl;
 
 	#if (java || php)
 	/** Tests the `rawOffset` property. **/
-	@:variant("Africa/Cairo", 7200000)
-	@:variant("America/New_York", -18000000)
-	@:variant("Asia/Tokyo", 32400000)
-	@:variant("Europe/Paris", 3600000)
+	@:variant("Africa/Cairo", 7_200_000)
+	@:variant("America/New_York", -18_000_000)
+	@:variant("Asia/Tokyo", 32_400_000)
+	@:variant("Europe/Paris", 3_600_000)
 	public function testRawOffset(input: String, output: Int)
 		return assert(new TimeZone(input).rawOffset == output);
 

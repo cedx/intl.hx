@@ -7,7 +7,7 @@ Provides a small subset of the [International Components for Unicode (ICU)](http
 
 ## Documentation
 - [User guide](https://github.com/cedx/intl.hx/wiki)
-- [API reference](https://cedx.github.io/intl.hx)
+- [API reference](https://docs.belin.io/intl.hx)
 
 ## Development
 - [Git repository](https://github.com/cedx/intl.hx)

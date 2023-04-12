@@ -1,5 +1,7 @@
 --class-path src
 --define analyzer-optimize
+--define js-es=6
+--define js-global=global
 --js var/build.js
 
 intl.Collator

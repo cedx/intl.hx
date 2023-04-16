@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.8.0](https://github.com/cedx/intl.hx/compare/v0.7.0...v0.8.0)
+- Provides the `Region` component.
+
 ## Version [0.7.0](https://github.com/cedx/intl.hx/compare/v0.6.0...v0.7.0)
 - Updated the dependencies.
 - Use the null coalescing operator.

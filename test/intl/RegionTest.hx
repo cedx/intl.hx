@@ -6,7 +6,7 @@ package intl;
 	/** Creates a new test. **/
 	public function new() {}
 
-	#if php
+	#if (java || php)
 	/** Tests the `all` property. **/
 	public function testAll() {
 		final regions = Region.all;

@@ -1,6 +1,9 @@
 package intl;
 
-#if php
+#if java
+import java.Lib;
+import java.util.Locale as JavaLocale;
+#elseif php
 import php.Lib;
 import php.ResourceBundle;
 #end
@@ -12,15 +15,19 @@ using StringTools;
 @:jsonStringify(region -> region.toString())
 abstract Region(String) {
 
-	#if php
+	#if (java || php)
 	/** The list of all regions. **/
 	public static var all(get, never): Array<Region>;
 		static function get_all() {
-			final codes: Array<String> = [];
-			for (locale in Lib.toHaxeArray(ResourceBundle.getLocales(""))) if (~/_[A-Z]{2}$/.match(locale)) {
-				final code = locale.split("_").pop();
-				if (!codes.contains(code)) codes.push(code);
-			}
+			#if java
+				final codes = Lib.array(JavaLocale.getISOCountries());
+			#else
+				final codes: Array<String> = [];
+				for (locale in Lib.toHaxeArray(ResourceBundle.getLocales(""))) if (~/_[A-Z]{2}$/.match(locale)) {
+					final code = locale.split("_").pop();
+					if (!codes.contains(code)) codes.push(code);
+				}
+			#end
 
 			codes.sort(Reflect.compare);
 			return codes.map(Region.new);

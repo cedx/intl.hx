@@ -7,10 +7,16 @@ import php.IntlTimeZone;
 #end
 
 /** The underlying native time zone. **/
-private typedef NativeTimeZone = #if java JavaTimeZone #elseif js String #else IntlTimeZone #end;
+private typedef NativeTimeZone = #if java JavaTimeZone #elseif php IntlTimeZone #else String #end;
 
 /** Represents a time zone offset, and also figures out daylight savings. **/
+@:jsonParse(json -> new intl.TimeZone(json))
+@:jsonStringify(timeZone -> timeZone.toString())
 abstract TimeZone(NativeTimeZone) from NativeTimeZone to NativeTimeZone {
+
+	/** The identifier of this time zone. **/
+	public var id(get, never): String;
+		inline function get_id() return #if (java || php) this.getID() #else this #end;
 
 	#if (java || php)
 	/** The default locale. **/
@@ -30,10 +36,6 @@ abstract TimeZone(NativeTimeZone) from NativeTimeZone to NativeTimeZone {
 	public var dstSavings(get, never): Int;
 		inline function get_dstSavings() return this.getDSTSavings();
 
-	/** The identifier of this time zone. **/
-	public var id(get, never): String;
-		inline function get_id() return toString();
-
 	/** The amount of time in milliseconds to add to UTC to get standard time in this time zone. **/
 	public var rawOffset(get, never): Int;
 		inline function get_rawOffset() return this.getRawOffset();
@@ -45,7 +47,7 @@ abstract TimeZone(NativeTimeZone) from NativeTimeZone to NativeTimeZone {
 
 	/** Creates a new time zone. **/
 	public inline function new(id: String)
-		this = #if java JavaTimeZone.getTimeZone(id) #elseif js id #else IntlTimeZone.createTimeZone(id) #end;
+		this = #if java JavaTimeZone.getTimeZone(id) #elseif php IntlTimeZone.createTimeZone(id) #else id #end;
 
 	#if (java || php)
 	/** Returns an appropriately localized display name for the specified `locale`. **/
@@ -57,8 +59,7 @@ abstract TimeZone(NativeTimeZone) from NativeTimeZone to NativeTimeZone {
 	#end
 
 	/** Returns a string representation of this object. **/
-	@:to public inline function toString()
-		return #if java this.getID() #elseif js this #else this.getID() #end;
+	@:to public inline function toString() return id;
 }
 
 /** Defines the options of a `TimeZone` instance. **/

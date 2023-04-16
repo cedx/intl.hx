@@ -13,6 +13,8 @@ import php.Locale as PhpLocale;
 private typedef NativeLocale = #if java JavaLocale #elseif js JsLocale #else String #end;
 
 /** Represents a Unicode identifier used to get language, culture, or regionally-specific behavior. **/
+@:jsonParse(json -> new intl.Locale(json))
+@:jsonStringify(locale -> locale.toString())
 abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 
 	#if (java || php)

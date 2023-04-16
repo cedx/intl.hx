@@ -7,5 +7,5 @@
 	"releasenote": "Updated the dependencies, use the null coalescing operator.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl"],
 	"url": "https://github.com/cedx/intl.hx",
-	"version": "0.7.0"
+	"version": "0.8.0"
 }

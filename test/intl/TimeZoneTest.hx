@@ -12,6 +12,7 @@ package intl;
 	@:variant("America/New_York", -18_000_000)
 	@:variant("Asia/Tokyo", 32_400_000)
 	@:variant("Europe/Paris", 3_600_000)
+	@:variant("Pacific/Honolulu", -36_000_000)
 	public function testRawOffset(input: String, output: Int)
 		return assert(new TimeZone(input).rawOffset == output);
 
@@ -20,6 +21,7 @@ package intl;
 	@:variant("America/New_York", true)
 	@:variant("Asia/Tokyo", false)
 	@:variant("Europe/Paris", true)
+	@:variant("Pacific/Honolulu", false)
 	public function testUseDaylightTime(input: String, output: Bool)
 		return assert(new TimeZone(input).useDaylightTime == output);
 
@@ -28,6 +30,7 @@ package intl;
 	@:variant("America/New_York", "Eastern Standard Time", "EST")
 	@:variant("Asia/Tokyo", "Japan Standard Time", #if java "JST" #else "GMT+9" #end)
 	@:variant("Europe/Paris", "Central European Standard Time", #if java "CET" #else "GMT+1" #end)
+	@:variant("Pacific/Honolulu", "Hawaii-Aleutian Standard Time", "HST")
 	public function testGetDisplayName(input: String, long: String, short: String) {
 		final timeZone = new TimeZone(input);
 		asserts.assert(timeZone.getDisplayName("en-US", {style: Long}) == long);
@@ -41,6 +44,7 @@ package intl;
 	@:variant("America/New_York")
 	@:variant("Asia/Tokyo")
 	@:variant("Europe/Paris")
+	@:variant("Pacific/Honolulu")
 	public function testToString(value: String)
 		return assert(new TimeZone(value).toString() == value);
 }

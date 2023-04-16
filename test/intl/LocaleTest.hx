@@ -7,6 +7,7 @@ package intl;
 	public function new() {}
 
 	/** Tests the `displayLanguage` property. **/
+	@:variant("de-DE", "Deutsch")
 	@:variant("en-US", "English")
 	@:variant("es-MX", "español")
 	@:variant("fr-FR", "français")
@@ -16,6 +17,7 @@ package intl;
 		return assert(new Locale(input).displayLanguage == output);
 
 	/** Tests the `displayRegion` property. **/
+	@:variant("de-DE", "Deutschland")
 	@:variant("en-US", "United States")
 	@:variant("es-MX", "México")
 	@:variant("fr-FR", "France")
@@ -25,6 +27,7 @@ package intl;
 		return assert(new Locale(input).displayRegion == output);
 
 	/** Tests the `language` property. **/
+	@:variant("de-DE", "de")
 	@:variant("en-US", "en")
 	@:variant("es-MX", "es")
 	@:variant("fr-FR", "fr")
@@ -34,6 +37,7 @@ package intl;
 		return assert(new Locale(input).language == output);
 
 	/** Tests the `region` property. **/
+	@:variant("de-DE", "DE")
 	@:variant("en-US", "US")
 	@:variant("es-MX", "MX")
 	@:variant("fr-FR", "FR")
@@ -43,6 +47,7 @@ package intl;
 		return assert(new Locale(input).region == output);
 
 	/** Tests the `getDisplayLanguage()` method. **/
+	@:variant("de", "German", "allemand")
 	@:variant("en", "English", "anglais")
 	@:variant("es", "Spanish", "espagnol")
 	@:variant("fr", "French", "français")
@@ -55,6 +60,7 @@ package intl;
 	}
 
 	/** Tests the `getDisplayRegion()` method. **/
+	@:variant("DE", "Germany", "Allemagne")
 	@:variant("US", "United States", "États-Unis")
 	@:variant("MX", "Mexico", "Mexique")
 	@:variant("FR", "France", "France")
@@ -67,6 +73,7 @@ package intl;
 	}
 
 	/** Tests the `toString()` method. **/
+	@:variant("de-DE")
 	@:variant("en-US")
 	@:variant("fr-FR")
 	@:variant("it-IT")

@@ -46,7 +46,7 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 		inline function get_region()
 			return #if java this.getCountry() #elseif js this.region #else PhpLocale.getRegion(this) #end;
 
-	/** Creates a new locale. **/
+	/** Creates a new locale from the specified language `tag`. **/
 	public inline function new(tag: String)
 		this = #if java JavaLocale.forLanguageTag(tag) #elseif js new JsLocale(tag) #else tag #end;
 

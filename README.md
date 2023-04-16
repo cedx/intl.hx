@@ -3,11 +3,11 @@
 
 Provides a small subset of the [International Components for Unicode (ICU)](https://icu.unicode.org), for [Haxe](https://haxe.org).
 
-> Supports only `java`, `js` and `php` compilation targets.
+> Supports only the `java`, `js` and `php` compilation targets.
 
 ## Documentation
-- [User guide](https://github.com/cedx/intl.hx/wiki)
-- [API reference](https://docs.belin.io/intl.hx)
+- [User guide](https://docs.belin.io/intl.hx)
+- [API reference](https://docs.belin.io/intl.hx/api)
 
 ## Development
 - [Git repository](https://github.com/cedx/intl.hx)
@@ -15,4 +15,4 @@ Provides a small subset of the [International Components for Unicode (ICU)](http
 - [Submit an issue](https://github.com/cedx/intl.hx/issues)
 
 ## License
-[ICU for Haxe](https://github.com/cedx/intl.hx) is distributed under the MIT License.
+[ICU for Haxe](https://docs.belin.io/intl.hx) is distributed under the MIT License.

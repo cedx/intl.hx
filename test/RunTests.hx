@@ -11,6 +11,7 @@ function main() {
 		new intl.DateFormatTest(),
 		new intl.LocaleTest(),
 		new intl.NumberFormatTest(),
+		new intl.RegionTest(),
 		new intl.TimeZoneTest()
 	]);
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.8.1](https://github.com/cedx/intl.hx/compare/v0.8.0...v0.8.1)
+- Added some implicit casts from `String`.
+
 ## Version [0.8.0](https://github.com/cedx/intl.hx/compare/v0.7.0...v0.8.0)
 - Provides the `Region` component.
 

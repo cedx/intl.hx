@@ -60,12 +60,12 @@ package intl;
 	}
 
 	/** Tests the `getDisplayRegion()` method. **/
+	@:variant("BR", "Brazil", "Brésil")
 	@:variant("DE", "Germany", "Allemagne")
-	@:variant("US", "United States", "États-Unis")
-	@:variant("MX", "Mexico", "Mexique")
 	@:variant("FR", "France", "France")
 	@:variant("IT", "Italy", "Italie")
-	@:variant("BR", "Brazil", "Brésil")
+	@:variant("MX", "Mexico", "Mexique")
+	@:variant("US", "United States", "États-Unis")
 	public function testGetDisplayRegion(input: String, english: String, french: String) {
 		asserts.assert(new Locale("en-US").getDisplayRegion(input) == english);
 		asserts.assert(new Locale("fr-FR").getDisplayRegion(input) == french);

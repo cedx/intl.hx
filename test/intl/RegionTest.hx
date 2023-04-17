@@ -17,6 +17,16 @@ package intl;
 	}
 	#end
 
+	/** Tests the `emojiFlag` property. **/
+	@:variant("BR", "🇧🇷")
+	@:variant("DE", "🇩🇪")
+	@:variant("FR", "🇫🇷")
+	@:variant("IT", "🇮🇹")
+	@:variant("MX", "🇲🇽")
+	@:variant("US", "🇺🇸")
+	public function testEmojiFlag(input: String, output: String)
+		return assert(new Region(input).emojiFlag == output);
+
 	/** Tests the `getDisplayName()` method. **/
 	@:variant("de", "Frankreich")
 	@:variant("en", "France")

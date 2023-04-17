@@ -11,7 +11,7 @@ function main() {
 	Sys.command("lix", ["run", "dox",
 		"--define", "description", "Provides a small subset of the International Components for Unicode (ICU), for Haxe.",
 		"--define", "source-path", "https://github.com/cedx/intl.hx/blob/main/src",
-		"--define", "themeColor", "0xffc105",
+		"--define", "themeColor", "0xea8220",
 		"--define", "version", Version.packageVersion,
 		"--define", "website", "https://github.com/cedx/intl.hx",
 		"--input-path", "var",

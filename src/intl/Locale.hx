@@ -15,7 +15,7 @@ private typedef NativeLocale = #if java JavaLocale #elseif js JsLocale #else Str
 /** Represents a Unicode identifier used to get language, culture, or regionally-specific behavior. **/
 @:jsonParse(json -> new intl.Locale(json))
 @:jsonStringify(locale -> locale.toString())
-abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
+abstract Locale(NativeLocale) #if (java || js) from NativeLocale to NativeLocale #end {
 
 	#if (java || php)
 	/** The default locale. **/
@@ -61,6 +61,9 @@ abstract Locale(NativeLocale) from NativeLocale to NativeLocale {
 		#if java JavaLocale.forLanguageTag('$language-$region').getDisplayCountry(this)
 		#elseif js new DisplayNames(toString(), cast {type: Region}).of(region)
 		#else PhpLocale.getDisplayRegion('$language-$region', this) #end;
+
+	/** Creates a new locale from the specified string. **/
+	@:from static inline function ofString(value: String) return new Locale(value);
 
 	/** Returns a string representation of this object. **/
 	@:to public inline function toString()

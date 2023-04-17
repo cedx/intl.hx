@@ -54,6 +54,9 @@ abstract Region(String) {
 	/** Returns an appropriately localized display name for the specified `locale`. **/
 	public function getDisplayName(locale: String) return new Locale(locale).getDisplayRegion(this);
 
+	/** Creates a new region from the specified string. **/
+	@:from static inline function ofString(value: String) return new Region(value);
+
 	/** Returns a string representation of this object. **/
 	@:to public inline function toString() return code;
 }

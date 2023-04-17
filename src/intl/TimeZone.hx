@@ -12,7 +12,7 @@ private typedef NativeTimeZone = #if java JavaTimeZone #elseif php IntlTimeZone 
 /** Represents a time zone offset, and also figures out daylight savings. **/
 @:jsonParse(json -> new intl.TimeZone(json))
 @:jsonStringify(timeZone -> timeZone.toString())
-abstract TimeZone(NativeTimeZone) from NativeTimeZone to NativeTimeZone {
+abstract TimeZone(NativeTimeZone) #if (java || php) from NativeTimeZone to NativeTimeZone #end {
 
 	/** The identifier of this time zone. **/
 	public var id(get, never): String;
@@ -57,6 +57,9 @@ abstract TimeZone(NativeTimeZone) from NativeTimeZone to NativeTimeZone {
 		return #if java this.getDisplayName(daylight, style, new Locale(locale)) #else this.getDisplayName(daylight, style, locale) #end;
 	}
 	#end
+
+	/** Creates a new time zone from the specified string. **/
+	@:from static inline function ofString(value: String) return new TimeZone(value);
 
 	/** Returns a string representation of this object. **/
 	@:to public inline function toString() return id;

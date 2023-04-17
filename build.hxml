@@ -8,5 +8,6 @@ intl.Collator
 intl.DateFormat
 intl.Locale
 intl.NumberFormat
+intl.Region
 intl.SimpleUnit
 intl.TimeZone

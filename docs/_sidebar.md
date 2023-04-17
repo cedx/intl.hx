@@ -1,0 +1,3 @@
+- [Installation](installation.md)
+- [API reference](api/)
+- [License](license.md)

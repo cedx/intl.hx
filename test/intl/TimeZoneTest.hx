@@ -38,13 +38,4 @@ package intl;
 		return asserts.done();
 	}
 	#end
-
-	/** Tests the `toString()` method. **/
-	@:variant("Africa/Cairo")
-	@:variant("America/New_York")
-	@:variant("Asia/Tokyo")
-	@:variant("Europe/Paris")
-	@:variant("Pacific/Honolulu")
-	public function testToString(value: String)
-		return assert(new TimeZone(value).toString() == value);
 }

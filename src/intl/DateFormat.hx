@@ -21,9 +21,8 @@ private typedef NativeDateFormat = #if java JavaDateFormat #elseif js DateTimeFo
 abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat {
 
 	/** Creates a new date format. **/
-	public #if js inline #end function new(locale: String, options: DateFormatOptions) {
+	public #if js inline #end function new(locale: Locale, options: DateFormatOptions) {
 		#if java
-			final locale = new Locale(locale);
 			this = switch options {
 				case {dateStyle: dateStyle, timeStyle: null} if (dateStyle != null): JavaDateFormat.getDateInstance(dateStyle, locale);
 				case {dateStyle: null, timeStyle: timeStyle} if (timeStyle != null): JavaDateFormat.getTimeInstance(timeStyle, locale);
@@ -82,7 +81,7 @@ enum abstract DateFormatStyle(#if js String #else Int #end) to #if js String #el
 abstract class DateFormatTools {
 
 	/** Converts the specified `date` to a locale-dependent string. **/
-	public static #if js inline #end function toLocaleString(date: Date, locale: String, options: DateFormatOptions): String return
+	public static #if js inline #end function toLocaleString(date: Date, locale: Locale, options: DateFormatOptions): String return
 		#if js JsDate.fromHaxeDate(date).toLocaleString(locale, cast options)
 		#else new DateFormat(locale, options).format(date) #end;
 }

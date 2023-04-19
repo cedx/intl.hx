@@ -17,9 +17,9 @@ private typedef NativeCollator = #if java JavaCollator #elseif js JsCollator #el
 abstract Collator(NativeCollator) from NativeCollator to NativeCollator {
 
 	/** Creates a new date format. **/
-	public #if js inline #end function new(locale: String, options: CollatorOptions) {
+	public #if js inline #end function new(locale: Locale, options: CollatorOptions) {
 		#if java
-			this = JavaCollator.getInstance(new Locale(locale));
+			this = JavaCollator.getInstance(locale);
 			this.setStrength(options.strength ?? Identical);
 		#elseif js
 			this = new JsCollator(locale, {sensitivity: options.strength ?? Identical});

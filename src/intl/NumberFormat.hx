@@ -18,9 +18,8 @@ private typedef NativeNumberFormat = #if java JavaNumberFormat #elseif js JsNumb
 abstract NumberFormat(#if php NumberFormatData #else NativeNumberFormat #end) #if (java || js) from NativeNumberFormat to NativeNumberFormat #end {
 
 	/** Creates a new number format. **/
-	public #if js inline #end function new(locale: String, options: NumberFormatOptions) {
+	public #if js inline #end function new(locale: Locale, options: NumberFormatOptions) {
 		#if java
-			final locale = new Locale(locale);
 			switch options.style {
 				case Currency: this = JavaNumberFormat.getCurrencyInstance(locale); this.setCurrency(JavaCurrency.getInstance(options.currency));
 				case Percent: this = JavaNumberFormat.getPercentInstance(locale);
@@ -83,7 +82,7 @@ typedef NumberFormatOptions = #if js JsNumberFormatOptions & #end {
 abstract class NumberFormatTools {
 
 	/** Converts the specified `number` to a locale-dependent string. **/
-	public static #if js inline #end function toLocaleString(number: Float, locale: String, options: NumberFormatOptions): String return
+	public static #if js inline #end function toLocaleString(number: Float, locale: Locale, options: NumberFormatOptions): String return
 		#if js Syntax.code("{0}.toLocaleString({1}, {2})", number, locale, options)
 		#else new NumberFormat(locale, options).format(number) #end;
 }

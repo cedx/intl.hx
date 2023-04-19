@@ -49,6 +49,6 @@ enum abstract CollatorStrength(#if js Sensitivity #else Int #end) to #if js Sens
 	/** Upper and lower case differences in characters are distinguished. **/
 	var Tertiary = #if js Case #else 2 #end;
 
-	/** When all other levels are equal, the `Identical` level is used as a tiebreaker. **/
+	/** When all other levels are equal, the `Identical` level is used to break the tie. **/
 	var Identical = #if java 3 #elseif js Variant #else 15 #end;
 }

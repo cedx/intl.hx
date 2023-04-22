@@ -4,7 +4,7 @@
 	"description": "Provides a small subset of the International Components for Unicode (ICU).",
 	"license": "MIT",
 	"name": "intl",
-	"releasenote": "Changed the type of the `locale` parameters from `String` to `Locale`.",
+	"releasenote": "Made the `options` parameters optional.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl", "locale"],
 	"url": "https://github.com/cedx/intl.hx",
 	"version": "0.9.1"

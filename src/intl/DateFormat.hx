@@ -5,6 +5,7 @@ import java.text.DateFormat as JavaDateFormat;
 import java.util.Date as JavaDate;
 import java.util.TimeZone;
 #elseif js
+import js.Lib;
 import js.lib.Date as JsDate;
 import js.lib.intl.DateTimeFormat;
 #else
@@ -21,21 +22,26 @@ private typedef NativeDateFormat = #if java JavaDateFormat #elseif js DateTimeFo
 abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat {
 
 	/** Creates a new date format. **/
-	public #if js inline #end function new(locale: Locale, options: DateFormatOptions) {
+	public #if js inline #end function new(locale: Locale, ?options: DateFormatOptions) {
 		#if java
 			this = switch options {
-				case {dateStyle: dateStyle, timeStyle: null} if (dateStyle != null): JavaDateFormat.getDateInstance(dateStyle, locale);
-				case {dateStyle: null, timeStyle: timeStyle} if (timeStyle != null): JavaDateFormat.getTimeInstance(timeStyle, locale);
-				default: JavaDateFormat.getDateTimeInstance(options.dateStyle, options.timeStyle, locale);
+				case {dateStyle: dateStyle, timeStyle: null} if (dateStyle != null):
+					JavaDateFormat.getDateInstance(dateStyle, locale);
+				case {dateStyle: null, timeStyle: timeStyle} if (timeStyle != null):
+					JavaDateFormat.getTimeInstance(timeStyle, locale);
+				default:
+					final dateStyle = options?.dateStyle ?? JavaDateFormat.DEFAULT;
+					final timeStyle = options?.timeStyle ?? JavaDateFormat.DEFAULT;
+					JavaDateFormat.getDateTimeInstance(dateStyle, timeStyle, locale);
 			}
 
-			if (options.timeZone != null) this.setTimeZone(TimeZone.getTimeZone(options.timeZone));
+			if (options?.timeZone != null) this.setTimeZone(TimeZone.getTimeZone(options.timeZone));
 		#elseif js
-			this = new DateTimeFormat(locale, options);
+			this = new DateTimeFormat(locale, options ?? Lib.undefined);
 		#else
-			final dateStyle = options.dateStyle ?? IntlDateFormatter.NONE;
-			final timeStyle = options.timeStyle ?? IntlDateFormatter.NONE;
-			this = new IntlDateFormatter(locale, dateStyle, timeStyle, options.timeZone);
+			final dateStyle = options?.dateStyle ?? IntlDateFormatter.NONE;
+			final timeStyle = options?.timeStyle ?? IntlDateFormatter.NONE;
+			this = new IntlDateFormatter(locale, dateStyle, timeStyle, options?.timeZone);
 		#end
 	}
 
@@ -81,7 +87,7 @@ enum abstract DateFormatStyle(#if js String #else Int #end) to #if js String #el
 abstract class DateFormatTools {
 
 	/** Converts the specified `date` to a locale-dependent string. **/
-	public static #if js inline #end function toLocaleString(date: Date, locale: Locale, options: DateFormatOptions): String return
-		#if js JsDate.fromHaxeDate(date).toLocaleString(locale, cast options)
+	public static #if js inline #end function toLocaleString(date: Date, locale: Locale, ?options: DateFormatOptions): String return
+		#if js JsDate.fromHaxeDate(date).toLocaleString(locale, options ?? Lib.undefined)
 		#else new DateFormat(locale, options).format(date) #end;
 }

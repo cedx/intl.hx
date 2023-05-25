@@ -6,6 +6,6 @@
 	"name": "intl",
 	"releasenote": "Made the `options` parameters optional.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl", "locale"],
-	"url": "https://github.com/cedx/intl.hx",
+	"url": "https://docs.belin.io/intl.hx",
 	"version": "0.9.1"
 }

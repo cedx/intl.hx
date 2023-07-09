@@ -1,5 +1,5 @@
 //! --class-path src --library tink_core
-import intl.Version;
+import intl.Platform;
 import sys.FileSystem;
 import sys.io.File;
 using Lambda;
@@ -14,7 +14,7 @@ function main() {
 		"--define", "description", "Provides a small subset of the International Components for Unicode (ICU), for Haxe.",
 		"--define", "source-path", "https://github.com/cedx/intl.hx/blob/main/src",
 		"--define", "themeColor", "0xea8220",
-		"--define", "version", Version.packageVersion,
+		"--define", "version", Platform.packageVersion,
 		"--define", "website", "https://docs.belin.io/intl.hx",
 		"--input-path", "var",
 		"--output-path", "docs/api",

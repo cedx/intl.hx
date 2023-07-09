@@ -22,5 +22,5 @@ function main() {
 		"--toplevel-package", "intl"
 	]);
 
-	File.copy("docs/api/favicon.ico", "docs/api/favicon.ico");
+	File.copy("docs/favicon.ico", "docs/api/favicon.ico");
 }

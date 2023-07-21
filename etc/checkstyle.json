@@ -9,9 +9,9 @@
 			"src/intl/Region",
 			"src/intl/TimeZone"
 		],
-		"OperatorWhitespace": ["test/intl/CollatorTest:testCompare"],
+		"OperatorWhitespace": ["test/intl/CollatorTest:compare"],
 		"ReturnCount": ["src/intl/DateFormat:format"],
-		"WhitespaceAround": ["test/intl/CollatorTest:testCompare"]
+		"WhitespaceAround": ["test/intl/CollatorTest:compare"]
 	},
 	"checks": [
 		{"type": "BlockBreakingConditional"},

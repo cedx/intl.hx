@@ -13,7 +13,7 @@ package intl;
 	@:variant("fr-FR", "français")
 	@:variant("it-IT", "italiano")
 	@:variant("pt-BR", "português")
-	public function testDisplayLanguage(input: String, output: String)
+	public function displayLanguage(input: String, output: String)
 		return assert(new Locale(input).displayLanguage == output);
 
 	/** Tests the `displayRegion` property. **/
@@ -23,7 +23,7 @@ package intl;
 	@:variant("fr-FR", "France")
 	@:variant("it-IT", "Italia")
 	@:variant("pt-BR", "Brasil")
-	public function testDisplayRegion(input: String, output: String)
+	public function displayRegion(input: String, output: String)
 		return assert(new Locale(input).displayRegion == output);
 
 	/** Tests the `language` property. **/
@@ -33,7 +33,7 @@ package intl;
 	@:variant("fr-FR", "fr")
 	@:variant("it-IT", "it")
 	@:variant("pt-BR", "pt")
-	public function testLanguage(input: String, output: String)
+	public function language(input: String, output: String)
 		return assert(new Locale(input).language == output);
 
 	/** Tests the `region` property. **/
@@ -43,7 +43,7 @@ package intl;
 	@:variant("fr-FR", "FR")
 	@:variant("it-IT", "IT")
 	@:variant("pt-BR", "BR")
-	public function testRegion(input: String, output: String)
+	public function region(input: String, output: String)
 		return assert(new Locale(input).region == output);
 
 	/** Tests the `getDisplayLanguage()` method. **/
@@ -53,7 +53,7 @@ package intl;
 	@:variant("fr", "French", "français")
 	@:variant("it", "Italian", "italien")
 	@:variant("pt", "Portuguese", "portugais")
-	public function testGetDisplayLanguage(input: String, english: String, french: String) {
+	public function getDisplayLanguage(input: String, english: String, french: String) {
 		asserts.assert(new Locale("en-US").getDisplayLanguage(input) == english);
 		asserts.assert(new Locale("fr-FR").getDisplayLanguage(input) == french);
 		return asserts.done();
@@ -66,7 +66,7 @@ package intl;
 	@:variant("IT", "Italy", "Italie")
 	@:variant("MX", "Mexico", "Mexique")
 	@:variant("US", "United States", "États-Unis")
-	public function testGetDisplayRegion(input: String, english: String, french: String) {
+	public function getDisplayRegion(input: String, english: String, french: String) {
 		asserts.assert(new Locale("en-US").getDisplayRegion(input) == english);
 		asserts.assert(new Locale("fr-FR").getDisplayRegion(input) == french);
 		return asserts.done();
@@ -78,6 +78,6 @@ package intl;
 	@:variant("fr-FR")
 	@:variant("it-IT")
 	@:variant("pt-BR")
-	public function testToString(value: String)
+	public function toString(value: String)
 		return assert(new Locale(value).toString() == value);
 }

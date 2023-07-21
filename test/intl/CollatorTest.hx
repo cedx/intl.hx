@@ -21,6 +21,6 @@ final class CollatorTest {
 	@:variant("a", "b", Identical, -1)
 	@:variant("a", "à", Identical, -1)
 	@:variant("a", "A", Identical, -1)
-	public function testCompare(source: String, target: String, strength: CollatorStrength, output: Int)
+	public function compare(source: String, target: String, strength: CollatorStrength, output: Int)
 		return assert(new Collator("fr-FR", {strength: strength}).compare(source, target) == output);
 }

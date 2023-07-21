@@ -16,7 +16,7 @@ using intl.DateFormat.DateFormatTools;
 	@:variant("2020-07-15 12:30:00", {dateStyle: intl.DateFormat.DateFormatStyle.Full}, "mercredi 15 juillet 2020")
 	@:variant("2020-07-15 12:30:00", {timeStyle: intl.DateFormat.DateFormatStyle.Short}, "12:30")
 	@:variant("2020-07-15 12:30:00", {timeStyle: intl.DateFormat.DateFormatStyle.Medium}, "12:30:00")
-	public function testFormat(input: String, style: DateFormatOptions, output: String) {
+	public function format(input: String, style: DateFormatOptions, output: String) {
 		final date = Date.fromString(input);
 		asserts.assert(new DateFormat("fr-FR", style).format(date) == output);
 		asserts.assert(date.toLocaleString("fr-FR", style) == output);

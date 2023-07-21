@@ -8,7 +8,7 @@ package intl;
 
 	#if (java || php)
 	/** Tests the `all` property. **/
-	public function testAll() {
+	public function all() {
 		final regions = Region.all;
 		asserts.assert(regions.length > 200 && regions.length < 300);
 		asserts.assert(regions.shift() == "AD");
@@ -24,7 +24,7 @@ package intl;
 	@:variant("IT", "🇮🇹")
 	@:variant("MX", "🇲🇽")
 	@:variant("US", "🇺🇸")
-	public function testEmojiFlag(input: String, output: String)
+	public function emojiFlag(input: String, output: String)
 		return assert(new Region(input).emojiFlag == output);
 
 	/** Tests the `getDisplayName()` method. **/
@@ -34,6 +34,6 @@ package intl;
 	@:variant("fr", "France")
 	@:variant("it", "Francia")
 	@:variant("pt", "França")
-	public function testGetDisplayName(input: String, output: String)
+	public function getDisplayName(input: String, output: String)
 		return assert(new Region("FR").getDisplayName(input) == output);
 }

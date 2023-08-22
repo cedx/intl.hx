@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [1.0.0](https://github.com/cedx/intl.hx/compare/v0.9.1...v1.0.0)
+- First stable release.
+
 ## Version [0.9.1](https://github.com/cedx/intl.hx/compare/v0.9.0...v0.9.1)
 - Made the `options` parameters optional.
 

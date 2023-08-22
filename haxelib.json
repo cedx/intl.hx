@@ -4,8 +4,8 @@
 	"description": "Provides a small subset of the International Components for Unicode (ICU).",
 	"license": "MIT",
 	"name": "intl",
-	"releasenote": "Made the `options` parameters optional.",
+	"releasenote": "First stable release.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl", "locale"],
 	"url": "https://docs.belin.io/intl.hx",
-	"version": "0.9.1"
+	"version": "1.0.0"
 }

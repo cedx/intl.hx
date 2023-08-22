@@ -52,7 +52,7 @@ abstract Region(String) {
 	public inline function new(code: String) this = code.toUpperCase();
 
 	/** Returns an appropriately localized display name for the specified `locale`. **/
-	public function getDisplayName(locale: Locale) return locale.getDisplayRegion(this);
+	public inline function getDisplayName(locale: Locale) return locale.getDisplayRegion(this);
 
 	/** Creates a new region from the specified string. **/
 	@:from static inline function ofString(value: String) return new Region(value);

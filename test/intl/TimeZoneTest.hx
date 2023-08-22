@@ -17,7 +17,7 @@ package intl;
 		return assert(new TimeZone(input).rawOffset == output);
 
 	/** Tests the `useDaylightTime` property. **/
-	@:variant("Africa/Cairo", #if java false #else Sys.systemName() != "Windows" #end)
+	@:variant("Africa/Cairo", Sys.systemName() != "Windows")
 	@:variant("America/New_York", true)
 	@:variant("Asia/Tokyo", false)
 	@:variant("Europe/Paris", true)

@@ -88,6 +88,6 @@ abstract class DateFormatTools {
 
 	/** Converts the specified `date` to a locale-dependent string. **/
 	public static #if js inline #end function toLocaleString(date: Date, locale: Locale, ?options: DateFormatOptions): String return
-		#if js JsDate.fromHaxeDate(date).toLocaleString(locale, options ?? Lib.undefined)
+		#if js JsDate.fromHaxeDate(date).toLocaleString(locale, cast options ?? Lib.undefined)
 		#else new DateFormat(locale, options).format(date) #end;
 }

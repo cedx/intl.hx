@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [1.0.1](https://github.com/cedx/intl.hx/compare/v1.0.0...v1.0.1)
+- Improved the compatibility with [Haxe](https://haxe.org) 4.3.2.
+
 ## Version [1.0.0](https://github.com/cedx/intl.hx/compare/v0.9.1...v1.0.0)
 - First stable release.
 

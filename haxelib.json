@@ -7,5 +7,5 @@
 	"releasenote": "First stable release.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl", "locale"],
 	"url": "https://docs.belin.io/intl.hx",
-	"version": "1.0.0"
+	"version": "1.0.1"
 }

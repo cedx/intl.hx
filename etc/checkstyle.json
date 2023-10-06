@@ -2,19 +2,11 @@
 	"defaultSeverity": "ERROR",
 	"exclude": {
 		"path": "RELATIVE_TO_PROJECT",
-		"ConditionalCompilation": [
-			"src/intl/DateFormat",
-			"src/intl/Locale",
-			"src/intl/NumberFormat",
-			"src/intl/Region",
-			"src/intl/TimeZone"
-		],
 		"OperatorWhitespace": ["test/intl/CollatorTest:compare"],
 		"WhitespaceAround": ["test/intl/CollatorTest:compare"]
 	},
 	"checks": [
 		{"type": "BlockBreakingConditional"},
-		{"type": "ConditionalCompilation"},
 		{"type": "EmptyBlock"},
 
 		{"type": "ArrowFunction", "props": {"allowCurlyBody": true}},

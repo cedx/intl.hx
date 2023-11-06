@@ -22,7 +22,7 @@ abstract Region(String) {
 			#if java
 				final codes = Lib.array(JavaLocale.getISOCountries());
 			#else
-				final codes: Array<String> = [];
+				final codes = [];
 				for (locale in Lib.toHaxeArray(ResourceBundle.getLocales(""))) if (~/_[A-Z]{2}$/.match(locale)) {
 					final code = locale.split("_").pop();
 					if (!codes.contains(code)) codes.push(code);

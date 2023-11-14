@@ -15,4 +15,4 @@ Provides a small subset of the [International Components for Unicode (ICU)](http
 - [Submit an issue](https://github.com/cedx/intl.hx/issues)
 
 ## License
-[ICU for Haxe](https://cedx.github.io/intl.hx) is distributed under the MIT License.
+[ICU for Haxe](https://github.com/cedx/intl.hx) is distributed under the MIT License.

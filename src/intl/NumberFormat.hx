@@ -16,7 +16,7 @@ import php.NumberFormatter;
 private typedef NativeNumberFormat = #if java JavaNumberFormat #elseif js JsNumberFormat #else NumberFormatter #end;
 
 /** Formats numbers in a locale-dependent manner. **/
-abstract NumberFormat(#if php NumberFormatData #else NativeNumberFormat #end) #if (java || js) from NativeNumberFormat to NativeNumberFormat #end {
+abstract NumberFormat(#if php NumberFormatObject #else NativeNumberFormat #end) #if (java || js) from NativeNumberFormat to NativeNumberFormat #end {
 
 	/** Creates a new number format. **/
 	public #if js inline #end function new(locale: Locale, ?options: NumberFormatOptions) {
@@ -49,7 +49,7 @@ abstract NumberFormat(#if php NumberFormatData #else NativeNumberFormat #end) #i
 
 #if php
 /** Defines the underlying type of a `NumberFormat` instance. **/
-typedef NumberFormatData = {
+typedef NumberFormatObject = {
 
 	/** The currency code. **/
 	var ?currency: String;

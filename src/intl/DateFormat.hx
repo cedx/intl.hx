@@ -29,7 +29,7 @@ abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat 
 					JavaDateFormat.getDateInstance(dateStyle, locale);
 				case {dateStyle: null, timeStyle: timeStyle} if (timeStyle != null):
 					JavaDateFormat.getTimeInstance(timeStyle, locale);
-				default:
+				case _:
 					final dateStyle = options?.dateStyle ?? JavaDateFormat.DEFAULT;
 					final timeStyle = options?.timeStyle ?? JavaDateFormat.DEFAULT;
 					JavaDateFormat.getDateTimeInstance(dateStyle, timeStyle, locale);

@@ -24,7 +24,7 @@ abstract NumberFormat(#if php NumberFormatObject #else NativeNumberFormat #end) 
 			switch options?.style {
 				case Currency: this = JavaNumberFormat.getCurrencyInstance(locale); this.setCurrency(JavaCurrency.getInstance(options.currency));
 				case Percent: this = JavaNumberFormat.getPercentInstance(locale);
-				default: this = JavaNumberFormat.getNumberInstance(locale);
+				case _: this = JavaNumberFormat.getNumberInstance(locale);
 			}
 		#elseif js
 			this = new JsNumberFormat(locale, options ?? Lib.undefined);

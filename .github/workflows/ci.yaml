@@ -1,5 +1,6 @@
-name: main
+name: continuous-integration
 on: push
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -8,28 +9,29 @@ jobs:
         target: [java, js, php]
     steps:
       - name: Fetch sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Lix
         uses: lix-pm/setup-lix@master
       - name: Set up Java
         if: matrix.target == 'java'
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
       - name: Set up Node.js
         if: matrix.target == 'js'
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: 22
       - name: Set up PHP
         if: matrix.target == 'php'
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
+          coverage: none
           extensions: curl, intl, mbstring, simplexml
+          php-version: 8.3
       - name: Cache dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/haxe
           key: haxe-${{runner.os}}-lix-${{hashFiles('.haxerc', 'haxe_libraries/*.hxml')}}
@@ -38,9 +40,3 @@ jobs:
         run: lix download
       - name: Run tests
         run: haxe test_${{matrix.target}}.hxml
-      - name: Collect code coverage
-        if: success()
-        uses: codecov/codecov-action@v3
-        with:
-          files: var/lcov.info
-          flags: ${{matrix.target}}

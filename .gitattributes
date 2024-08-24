@@ -7,11 +7,11 @@
 *.http text
 *.hx text
 *.hxml text
-*.info text
 *.js text
 *.json text
 *.md text diff=markdown
 *.mjs text
+*.ps1 text
 *.sql text
 *.svg text
 *.txt text

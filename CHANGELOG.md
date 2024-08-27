@@ -1,7 +1,7 @@
 # Changelog
 
 ## Version [1.0.2](https://github.com/cedx/intl.hx/compare/v1.0.1...v1.0.2)
-- Migrated the documentation to the [GitHub wiki](https://github.com/cedx/nwjs.hx/wiki).
+- Migrated the documentation to the [GitHub wiki](https://github.com/cedx/intl.hx/wiki).
 
 ## Version [1.0.1](https://github.com/cedx/intl.hx/compare/v1.0.0...v1.0.1)
 - Improved the compatibility with [Haxe](https://haxe.org) 4.3.2.

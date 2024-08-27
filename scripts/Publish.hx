@@ -1,4 +1,4 @@
-//! --class-path src --library tink_core
+//! --class-path src
 import intl.Platform;
 
 /** Publishes the package. **/

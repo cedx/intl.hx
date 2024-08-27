@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [1.0.2](https://github.com/cedx/intl.hx/compare/v1.0.1...v1.0.2)
+- Migrated the documentation to the [GitHub wiki](https://github.com/cedx/nwjs.hx/wiki).
+
 ## Version [1.0.1](https://github.com/cedx/intl.hx/compare/v1.0.0...v1.0.1)
 - Improved the compatibility with [Haxe](https://haxe.org) 4.3.2.
 
@@ -19,7 +22,7 @@
 - Provides the `Region` component.
 
 ## Version [0.7.0](https://github.com/cedx/intl.hx/compare/v0.6.0...v0.7.0)
-- Updated the dependencies.
+- Updated the package dependencies.
 - Use the null coalescing operator.
 
 ## Version [0.6.0](https://github.com/cedx/intl.hx/compare/v0.5.0...v0.6.0)

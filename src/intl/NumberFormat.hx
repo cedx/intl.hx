@@ -47,7 +47,7 @@ abstract NumberFormat(#if php NumberFormatObject #else NativeNumberFormat #end) 
 
 #if php
 /** Defines the underlying type of a `NumberFormat` instance. **/
-typedef NumberFormatObject = {
+private typedef NumberFormatObject = {
 
 	/** The currency code. **/
 	var ?currency: String;

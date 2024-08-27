@@ -7,5 +7,5 @@
 	"releasenote": "Improved the compatibility with Haxe 4.3.2.",
 	"tags": ["cross", "formatter", "i18n", "internationalization", "intl", "locale"],
 	"url": "https://github.com/cedx/intl.hx",
-	"version": "1.0.1"
+	"version": "1.1.0"
 }

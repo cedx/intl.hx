@@ -1,19 +1,16 @@
 package intl;
 
 #if java
-import java.text.NumberFormat as JavaNumberFormat;
+import java.text.NumberFormat as NativeNumberFormat;
 import java.util.Currency as JavaCurrency;
 #elseif js
 import js.Lib;
 import js.Syntax;
-import js.lib.intl.NumberFormat as JsNumberFormat;
+import js.lib.intl.NumberFormat as NativeNumberFormat;
 import js.lib.intl.NumberFormat.NumberFormatOptions as JsNumberFormatOptions;
 #else
-import php.NumberFormatter;
+import php.NumberFormatter as NativeNumberFormat;
 #end
-
-/** The underlying native number format. **/
-private typedef NativeNumberFormat = #if java JavaNumberFormat #elseif js JsNumberFormat #else NumberFormatter #end;
 
 /** Formats numbers in a locale-dependent manner. **/
 abstract NumberFormat(#if php NumberFormatObject #else NativeNumberFormat #end) #if (java || js) from NativeNumberFormat to NativeNumberFormat #end {
@@ -22,16 +19,16 @@ abstract NumberFormat(#if php NumberFormatObject #else NativeNumberFormat #end) 
 	public #if js inline #end function new(locale: Locale, ?options: NumberFormatOptions) {
 		#if java
 			switch options?.style {
-				case Currency: this = JavaNumberFormat.getCurrencyInstance(locale); this.setCurrency(JavaCurrency.getInstance(options.currency));
-				case Percent: this = JavaNumberFormat.getPercentInstance(locale);
-				case _: this = JavaNumberFormat.getNumberInstance(locale);
+				case Currency: this = NativeNumberFormat.getCurrencyInstance(locale); this.setCurrency(JavaCurrency.getInstance(options.currency));
+				case Percent: this = NativeNumberFormat.getPercentInstance(locale);
+				case _: this = NativeNumberFormat.getNumberInstance(locale);
 			}
 		#elseif js
-			this = new JsNumberFormat(locale, options ?? Lib.undefined);
+			this = new NativeNumberFormat(locale, options ?? Lib.undefined);
 		#else
 			this = {
 				currency: options?.style == Currency ? options.currency : null,
-				formatter: new NumberFormatter(locale, options?.style ?? Decimal)
+				formatter: new NativeNumberFormat(locale, options?.style ?? Decimal)
 			};
 		#end
 	}
@@ -43,7 +40,8 @@ abstract NumberFormat(#if php NumberFormatObject #else NativeNumberFormat #end) 
 
 	#if php
 	/** Converts this object to a native number formatter. **/
-	@:to public inline function toNumberFormatter() return this.formatter;
+	@:to public inline function toNumberFormatter(): NativeNumberFormat
+		return this.formatter;
 	#end
 }
 
@@ -55,7 +53,7 @@ typedef NumberFormatObject = {
 	var ?currency: String;
 
 	/** The native number format. **/
-	var formatter: NumberFormatter;
+	var formatter: NativeNumberFormat;
 };
 #end
 

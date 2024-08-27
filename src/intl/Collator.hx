@@ -1,16 +1,13 @@
 package intl;
 
 #if java
-import java.text.Collator as JavaCollator;
+import java.text.Collator as NativeCollator;
 #elseif js
-import js.lib.intl.Collator as JsCollator;
+import js.lib.intl.Collator as NativeCollator;
 import js.lib.intl.Collator.Sensitivity;
 #else
-import php.Collator as PhpCollator;
+import php.Collator as NativeCollator;
 #end
-
-/** The underlying native collator. **/
-private typedef NativeCollator = #if java JavaCollator #elseif js JsCollator #else PhpCollator #end;
 
 /** Provides string comparison capability with support for appropriate locale-sensitive sort orderings. **/
 @:forward(compare)
@@ -19,12 +16,12 @@ abstract Collator(NativeCollator) from NativeCollator to NativeCollator {
 	/** Creates a new date format. **/
 	public #if js inline #end function new(locale: Locale, ?options: CollatorOptions) {
 		#if java
-			this = JavaCollator.getInstance(locale);
+			this = NativeCollator.getInstance(locale);
 			this.setStrength(options?.strength ?? Identical);
 		#elseif js
-			this = new JsCollator(locale, {sensitivity: options?.strength ?? Identical});
+			this = new NativeCollator(locale, {sensitivity: options?.strength ?? Identical});
 		#else
-			this = new PhpCollator(locale);
+			this = new NativeCollator(locale);
 			this.setStrength(options?.strength ?? Identical);
 		#end
 	}

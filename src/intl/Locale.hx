@@ -63,9 +63,10 @@ abstract Locale(NativeLocale) #if (java || js) from NativeLocale to NativeLocale
 		#else PhpLocale.getDisplayRegion('$language-$region', this) #end;
 
 	/** Creates a new locale from the specified string. **/
-	@:from static inline function ofString(value: String) return new Locale(value);
+	@:from static inline function ofString(value: String): Locale
+		return new Locale(value);
 
 	/** Returns a string representation of this object. **/
-	@:to public inline function toString()
+	@:to public inline function toString(): String
 		return #if java this.toLanguageTag() #elseif js this.toString() #else this #end;
 }

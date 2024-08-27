@@ -59,10 +59,12 @@ abstract TimeZone(NativeTimeZone) #if (java || php) from NativeTimeZone to Nativ
 	#end
 
 	/** Creates a new time zone from the specified string. **/
-	@:from static inline function ofString(value: String) return new TimeZone(value);
+	@:from static inline function ofString(value: String): TimeZone
+		return new TimeZone(value);
 
 	/** Returns a string representation of this object. **/
-	@:to public inline function toString() return id;
+	@:to public inline function toString(): String
+		return id;
 }
 
 /** Defines the options of a `TimeZone` instance. **/

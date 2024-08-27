@@ -1,22 +1,20 @@
 package intl;
 
 #if java
-import java.text.DateFormat as JavaDateFormat;
+import java.text.DateFormat as NativeDateFormat;
 import java.util.Date as JavaDate;
 import java.util.TimeZone;
 #elseif js
 import js.Lib;
 import js.lib.Date as JsDate;
-import js.lib.intl.DateTimeFormat;
+import js.lib.intl.DateTimeFormat as NativeDateFormat;
+import js.lib.intl.DateTimeFormat.DateTimeFormatOptions;
 #else
 import php.DateTime;
-import php.IntlDateFormatter;
+import php.IntlDateFormatter as NativeDateFormat;
 #end
 
 using DateTools;
-
-/** The underlying native date format. **/
-private typedef NativeDateFormat = #if java JavaDateFormat #elseif js DateTimeFormat #else IntlDateFormatter #end;
 
 /** Formats dates in a locale-dependent manner. **/
 abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat {
@@ -26,22 +24,22 @@ abstract DateFormat(NativeDateFormat) from NativeDateFormat to NativeDateFormat 
 		#if java
 			this = switch options {
 				case {dateStyle: dateStyle, timeStyle: null} if (dateStyle != null):
-					JavaDateFormat.getDateInstance(dateStyle, locale);
+					NativeDateFormat.getDateInstance(dateStyle, locale);
 				case {dateStyle: null, timeStyle: timeStyle} if (timeStyle != null):
-					JavaDateFormat.getTimeInstance(timeStyle, locale);
+					NativeDateFormat.getTimeInstance(timeStyle, locale);
 				case _:
-					final dateStyle = options?.dateStyle ?? JavaDateFormat.DEFAULT;
-					final timeStyle = options?.timeStyle ?? JavaDateFormat.DEFAULT;
-					JavaDateFormat.getDateTimeInstance(dateStyle, timeStyle, locale);
+					final dateStyle = options?.dateStyle ?? NativeDateFormat.DEFAULT;
+					final timeStyle = options?.timeStyle ?? NativeDateFormat.DEFAULT;
+					NativeDateFormat.getDateTimeInstance(dateStyle, timeStyle, locale);
 			}
 
 			if (options?.timeZone != null) this.setTimeZone(TimeZone.getTimeZone(options.timeZone));
 		#elseif js
-			this = new DateTimeFormat(locale, options ?? Lib.undefined);
+			this = new NativeDateFormat(locale, options ?? Lib.undefined);
 		#else
-			final dateStyle = options?.dateStyle ?? IntlDateFormatter.NONE;
-			final timeStyle = options?.timeStyle ?? IntlDateFormatter.NONE;
-			this = new IntlDateFormatter(locale, dateStyle, timeStyle, options?.timeZone);
+			final dateStyle = options?.dateStyle ?? NativeDateFormat.NONE;
+			final timeStyle = options?.timeStyle ?? NativeDateFormat.NONE;
+			this = new NativeDateFormat(locale, dateStyle, timeStyle, options?.timeZone);
 		#end
 	}
 

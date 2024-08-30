@@ -49,7 +49,8 @@ abstract Region(String) {
 		function get_emojiFlag() return [for (charCode in this) charCode + 127_397].map(String.fromCharCode).join("");
 
 	/** Creates a new region from the specified ISO 3166-1 alpha-2 `code`. **/
-	public inline function new(code: String) this = code.toUpperCase();
+	public inline function new(code: String)
+		this = code.toUpperCase();
 
 	/** Returns an appropriately localized display name for the specified `locale`. **/
 	public inline function getDisplayName(locale: Locale): String

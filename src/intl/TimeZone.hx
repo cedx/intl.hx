@@ -22,9 +22,9 @@ abstract TimeZone(NativeTimeZone) #if (java || php) from NativeTimeZone to Nativ
 	/** The default time zone. **/
 	public static var defaultTimeZone(get, #if java set #else never #end): TimeZone;
 		static inline function get_defaultTimeZone()
-			return #if java JavaTimeZone.getDefault() #else IntlTimeZone.createDefault() #end;
+			return #if java NativeTimeZone.getDefault() #else NativeTimeZone.createDefault() #end;
 		#if java static function set_defaultTimeZone(value: TimeZone) {
-			JavaTimeZone.setDefault(value);
+			NativeTimeZone.setDefault(value);
 			return value;
 		} #end
 
@@ -47,15 +47,12 @@ abstract TimeZone(NativeTimeZone) #if (java || php) from NativeTimeZone to Nativ
 
 	/** Creates a new time zone. **/
 	public inline function new(id: String)
-		this = #if java JavaTimeZone.getTimeZone(id) #elseif php IntlTimeZone.createTimeZone(id) #else id #end;
+		this = #if java NativeTimeZone.getTimeZone(id) #elseif php NativeTimeZone.createTimeZone(id) #else id #end;
 
 	#if (java || php)
 	/** Returns an appropriately localized display name for the specified `locale`. **/
-	public function getDisplayName(locale: Locale, ?options: TimeZoneOptions): String {
-		final daylight = options?.daylight ?? false;
-		final style = options?.style ?? Long;
-		return #if java this.getDisplayName(daylight, style, locale) #else this.getDisplayName(daylight, style, locale) #end;
-	}
+	public function getDisplayName(locale: Locale, ?options: TimeZoneOptions): String
+		return this.getDisplayName(options?.daylight ?? false, options?.style ?? Long, locale);
 	#end
 
 	/** Creates a new time zone from the specified string. **/

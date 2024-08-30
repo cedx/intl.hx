@@ -21,9 +21,9 @@ abstract Locale(NativeLocale) #if (java || js) from NativeLocale to NativeLocale
 	/** The default locale. **/
 	public static var defaultLocale(get, set): Locale;
 		static inline function get_defaultLocale()
-			return #if java JavaLocale.getDefault() #else PhpLocale.getDefault() #end;
+			return #if java NativeLocale.getDefault() #else PhpLocale.getDefault() #end;
 		static function set_defaultLocale(value: Locale) {
-			#if java JavaLocale.setDefault(value) #else PhpLocale.setDefault(value) #end;
+			#if java NativeLocale.setDefault(value) #else PhpLocale.setDefault(value) #end;
 			return value;
 		}
 	#end
@@ -48,17 +48,17 @@ abstract Locale(NativeLocale) #if (java || js) from NativeLocale to NativeLocale
 
 	/** Creates a new locale from the specified language `tag`. **/
 	public inline function new(tag: String)
-		this = #if java JavaLocale.forLanguageTag(tag) #elseif js new JsLocale(tag) #else tag #end;
+		this = #if java NativeLocale.forLanguageTag(tag) #elseif js new NativeLocale(tag) #else tag #end;
 
 	/** Returns an appropriately localized display name for the specified `language`. **/
 	public function getDisplayLanguage(language: String): String return
-		#if java JavaLocale.forLanguageTag('$language-$region').getDisplayLanguage(this)
+		#if java NativeLocale.forLanguageTag('$language-$region').getDisplayLanguage(this)
 		#elseif js new DisplayNames(toString(), cast {type: Language}).of(language)
 		#else PhpLocale.getDisplayLanguage('$language-$region', this) #end;
 
 	/** Returns an appropriately localized display name for the specified `region`. **/
 	public function getDisplayRegion(region: String): String return
-		#if java JavaLocale.forLanguageTag('$language-$region').getDisplayCountry(this)
+		#if java NativeLocale.forLanguageTag('$language-$region').getDisplayCountry(this)
 		#elseif js new DisplayNames(toString(), cast {type: Region}).of(region)
 		#else PhpLocale.getDisplayRegion('$language-$region', this) #end;
 

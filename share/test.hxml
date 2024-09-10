@@ -4,5 +4,6 @@
 --define analyzer-optimize
 --define no-deprecation-warnings
 --library deep_equal
+--library tink_json
 --library tink_unittest
 --main RunTests

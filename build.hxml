@@ -3,3 +3,4 @@
 --define js-es=6
 --define js-global=globalThis
 --js var/build.js
+--library tink_json

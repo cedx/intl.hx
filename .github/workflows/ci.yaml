@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [java, js, php]
+        target: [java, nodejs, php]
     steps:
       - name: Fetch sources
         uses: actions/checkout@v4

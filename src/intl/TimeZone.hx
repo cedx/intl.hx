@@ -1,13 +1,7 @@
 package intl;
 
-#if java
-import java.util.TimeZone as JavaTimeZone;
-#elseif php
-import php.IntlTimeZone;
-#end
-
 /** The underlying native time zone. **/
-private typedef NativeTimeZone = #if java JavaTimeZone #elseif php IntlTimeZone #else String #end;
+private typedef NativeTimeZone = #if java java.util.TimeZone #elseif php php.IntlTimeZone #else String #end;
 
 /** Represents a time zone offset, and also figures out daylight savings. **/
 @:jsonParse(json -> new intl.TimeZone(json))

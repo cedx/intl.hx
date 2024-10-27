@@ -1,16 +1,7 @@
 package intl;
 
-#if java
-import java.text.NumberFormat as NativeNumberFormat;
-import java.util.Currency as JavaCurrency;
-#elseif js
-import js.Lib;
-import js.Syntax;
-import js.lib.intl.NumberFormat as NativeNumberFormat;
-import js.lib.intl.NumberFormat.NumberFormatOptions as JsNumberFormatOptions;
-#else
-import php.NumberFormatter as NativeNumberFormat;
-#end
+/** The underlying native number format. **/
+private typedef NativeNumberFormat = #if java java.text.NumberFormat #elseif js js.lib.intl.NumberFormat #else php.NumberFormatter #end;
 
 /** Formats numbers in a locale-dependent manner. **/
 abstract NumberFormat(#if php NumberFormatObject #else NativeNumberFormat #end) #if (java || js) from NativeNumberFormat to NativeNumberFormat #end {
@@ -19,12 +10,12 @@ abstract NumberFormat(#if php NumberFormatObject #else NativeNumberFormat #end) 
 	public #if js inline #end function new(locale: Locale, ?options: NumberFormatOptions) {
 		#if java
 			switch options?.style {
-				case Currency: this = NativeNumberFormat.getCurrencyInstance(locale); this.setCurrency(JavaCurrency.getInstance(options.currency));
+				case Currency: this = NativeNumberFormat.getCurrencyInstance(locale); this.setCurrency(java.util.Currency.getInstance(options.currency));
 				case Percent: this = NativeNumberFormat.getPercentInstance(locale);
 				case _: this = NativeNumberFormat.getNumberInstance(locale);
 			}
 		#elseif js
-			this = new NativeNumberFormat(locale, options ?? Lib.undefined);
+			this = new NativeNumberFormat(locale, options ?? js.Lib.undefined);
 		#else
 			this = {
 				currency: options?.style == Currency ? options.currency : null,
@@ -58,7 +49,7 @@ private typedef NumberFormatObject = {
 #end
 
 /** Defines the options of a `NumberFormat` instance. **/
-typedef NumberFormatOptions = #if js JsNumberFormatOptions & #end {
+typedef NumberFormatOptions = #if js js.lib.intl.NumberFormat.NumberFormatOptions & #end {
 
 	/** The currency code. **/
 	var ?currency: String;
@@ -82,7 +73,7 @@ abstract class NumberFormatTools {
 
 	/** Converts the specified `number` to a locale-dependent string. **/
 	public static #if js inline #end function toLocaleString(number: Float, locale: Locale, ?options: NumberFormatOptions): String return
-		#if js Syntax.code("{0}.toLocaleString({1}, {2})", number, locale, options ?? Lib.undefined)
+		#if js js.Syntax.code("{0}.toLocaleString({1}, {2})", number, locale, options ?? js.Lib.undefined)
 		#else new NumberFormat(locale, options).format(number) #end;
 }
 

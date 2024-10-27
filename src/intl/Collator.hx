@@ -1,13 +1,11 @@
 package intl;
 
-#if java
-import java.text.Collator as NativeCollator;
-#elseif js
-import js.lib.intl.Collator as NativeCollator;
+#if js
 import js.lib.intl.Collator.Sensitivity;
-#else
-import php.Collator as NativeCollator;
 #end
+
+/** The underlying native collator. **/
+private typedef NativeCollator = #if java java.text.Collator #elseif js js.lib.intl.Collator #else php.Collator #end;
 
 /** Provides string comparison capability with support for appropriate locale-sensitive sort orderings. **/
 @:forward(compare)

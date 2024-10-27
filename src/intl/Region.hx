@@ -1,13 +1,5 @@
 package intl;
 
-#if java
-import java.Lib;
-import java.util.Locale as JavaLocale;
-#elseif php
-import php.Lib;
-import php.ResourceBundle;
-#end
-
 using StringTools;
 
 /** Represents a country/region. **/
@@ -20,10 +12,10 @@ abstract Region(String) {
 	public static var all(get, never): Array<Region>;
 		static function get_all() {
 			#if java
-				final codes = Lib.array(JavaLocale.getISOCountries());
+				final codes = java.Lib.array(java.util.Locale.getISOCountries());
 			#else
 				final codes = [];
-				for (locale in Lib.toHaxeArray(ResourceBundle.getLocales(""))) if (~/_[A-Z]{2}$/.match(locale)) {
+				for (locale in php.Lib.toHaxeArray(php.ResourceBundle.getLocales(""))) if (~/_[A-Z]{2}$/.match(locale)) {
 					final code = locale.split("_").pop();
 					if (!codes.contains(code)) codes.push(code);
 				}
